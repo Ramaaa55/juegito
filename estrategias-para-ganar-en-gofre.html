@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Estrategias para ganar en Gofre: cómo resolver el waffle con menos intercambios</title>
+<meta name="description" content="Trucos y estrategias prácticas para resolver Gofre, el juego de palabras estilo Waffle, gastando la menor cantidad de intercambios posible. Consejos paso a paso en español.">
+<meta name="keywords" content="estrategias waffle, como ganar wordle, trucos juego de palabras, waffle en español, resolver waffle">
+<meta name="author" content="Gofre">
+<link rel="canonical" href="https://tu-dominio.com/estrategias-para-ganar-en-gofre.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Estrategias para ganar en Gofre">
+<meta property="og:description" content="Cómo resolver el waffle de palabras usando menos intercambios: guía práctica con ejemplos.">
+<meta property="og:url" content="https://tu-dominio.com/estrategias-para-ganar-en-gofre.html">
+<meta property="og:locale" content="es_ES">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Estrategias para ganar en Gofre: cómo resolver el waffle con menos intercambios",
+  "description": "Trucos y estrategias prácticas para resolver Gofre gastando la menor cantidad de intercambios posible.",
+  "inLanguage": "es",
+  "author": { "@type": "Organization", "name": "Gofre" },
+  "publisher": { "@type": "Organization", "name": "Gofre" },
+  "mainEntityOfPage": "https://tu-dominio.com/estrategias-para-ganar-en-gofre.html"
+}
+</script>
+
+<style>
+  :root{
+    --bg: #1B1712;
+    --surface: #251F17;
+    --tile: #332B20;
+    --tile-border: #493D2B;
+    --ink: #F4ECDC;
+    --ink-dim: #B4A48C;
+    --ink-faint: #7A6E5B;
+    --accent: #ED8A3F;
+    --accent-ink: #241207;
+    --green: #4F8F5B;
+    --yellow: #D3A73B;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 20% -10%, rgba(237,138,63,.08), transparent 45%),
+      radial-gradient(circle at 100% 10%, rgba(237,138,63,.05), transparent 40%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    padding:32px 18px 60px;
+  }
+  main{ max-width:640px; margin:0 auto; }
+  a{ color:var(--accent); }
+  header.page-head{
+    text-align:center;
+    margin-bottom:28px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+  }
+  .brand{ display:flex; align-items:baseline; gap:10px; }
+  .brand .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 12px rgba(237,138,63,.7);
+  }
+  .brand span.name{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-style:italic;
+    font-size:1.6rem;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.75rem;
+    line-height:1.25;
+    margin:6px 0 4px;
+  }
+  .subtitle{ color:var(--ink-faint); font-size:.9rem; }
+  .meta{ color:var(--ink-faint); font-size:.76rem; margin-top:2px; }
+
+  nav.sitenav{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+    font-size:.8rem;
+    margin-top:14px;
+  }
+  nav.sitenav a{ text-decoration:none; color:var(--ink-dim); border-bottom:1px solid transparent; }
+  nav.sitenav a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  article p{
+    color:var(--ink-dim);
+    line-height:1.7;
+    font-size:.95rem;
+    margin:0 0 16px;
+  }
+  article h2{
+    font-family:'Fraunces', serif;
+    font-size:1.25rem;
+    color:var(--ink);
+    margin:32px 0 12px;
+  }
+  article h2 .num{ color:var(--accent); margin-right:8px; }
+  article ul, article ol{
+    color:var(--ink-dim);
+    line-height:1.7;
+    font-size:.95rem;
+    padding-left:1.2em;
+    margin:0 0 16px;
+  }
+  article li{ margin-bottom:8px; }
+  strong{ color:var(--ink); }
+
+  .tip-box{
+    background:var(--surface);
+    border:1px solid var(--tile-border);
+    border-left:3px solid var(--accent);
+    border-radius:10px;
+    padding:14px 18px;
+    font-size:.9rem;
+    color:var(--ink-dim);
+    margin:0 0 16px;
+  }
+  .tip-box strong{ color:var(--accent); }
+
+  .example{
+    display:flex;
+    gap:6px;
+    margin:10px 0 16px;
+    flex-wrap:wrap;
+  }
+  .example .sq{
+    width:34px; height:34px;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1rem;
+    border:1px solid var(--tile-border);
+    background:var(--tile);
+    color:var(--ink);
+  }
+  .example .sq.g{ background:var(--green); border-color:var(--green); color:#EAF3EA; }
+  .example .sq.y{ background:var(--yellow); border-color:var(--yellow); color:#2B2004; }
+
+  .cta{ text-align:center; margin:34px 0 10px; }
+  .cta a.play-btn{
+    display:inline-block;
+    background:var(--accent);
+    color:var(--accent-ink);
+    font-weight:600;
+    text-decoration:none;
+    padding:13px 26px;
+    border-radius:12px;
+    font-size:.95rem;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--ink-faint);
+    font-size:.76rem;
+    margin-top:30px;
+  }
+  footer a{ color:var(--ink-faint); }
+</style>
+</head>
+<body>
+<main>
+
+  <header class="page-head">
+    <div class="brand"><span class="dot"></span><span class="name">Gofre</span></div>
+    <h1>Estrategias para ganar en Gofre</h1>
+    <p class="subtitle">Cómo resolver el waffle de palabras gastando menos intercambios</p>
+    <p class="meta">Guía de estrategia · Gofre</p>
+    <nav class="sitenav" aria-label="Navegación del sitio">
+      <a href="index.html">Jugar</a>
+      <a href="como-jugar.html">Cómo se juega</a>
+    </nav>
+  </header>
+
+  <article>
+    <p>Si ya conocés <a href="como-jugar.html">las reglas básicas de Gofre</a>, esta guía va un paso más allá: son las estrategias que realmente marcan la diferencia entre gastar los 15 intercambios de pura suerte y resolver el tablero con margen de sobra. Ninguna requiere ser un genio de las palabras — son formas de leer el tablero de manera más eficiente.</p>
+
+    <h2><span class="num">1.</span>Empezá por las esquinas y los cruces</h2>
+    <p>En el tablero de Gofre hay 9 fichas que pertenecen a <strong>dos palabras a la vez</strong>: una horizontal y una vertical que se cruzan justo ahí. Resolver correctamente una de esas fichas te da información sobre dos palabras al mismo tiempo, así que conviene priorizarlas antes que las fichas que solo pertenecen a una palabra.</p>
+    <div class="tip-box"><strong>Por qué funciona:</strong> cada intercambio que hacés en una intersección "vale doble", porque afecta la certeza que tenés sobre dos palabras distintas en simultáneo.</div>
+
+    <h2><span class="num">2.</span>Usá las fichas verdes como anclas fijas</h2>
+    <p>Apenas empieza la partida, fijate qué letras ya salieron verdes por casualidad. Esas fichas no se pueden ni necesitan mover — son puntos fijos que reducen el problema. Cuantas más anclas identifiques rápido, menos combinaciones tenés que probar con el resto.</p>
+
+    <h2><span class="num">3.</span>Las fichas amarillas casi nunca van "al lado"</h2>
+    <p>Cuando una ficha te da amarillo, sabés que esa letra pertenece a esa palabra, pero no en esa posición. Antes de moverla al azar, mirá las otras 4 casillas de esa misma palabra: si alguna ya es amarilla con una letra distinta, podés empezar a deducir el orden por eliminación, en vez de ir probando de a una.</p>
+    <div class="example">
+      <div class="sq y">R</div><div class="sq">A</div><div class="sq g">S</div><div class="sq y">O</div><div class="sq">C</div>
+    </div>
+    <p>En un caso como el del ejemplo, ya sabés que la S va en el medio y que la R y la O están en el resto de la palabra, pero cambiadas de lugar entre sí — con eso alcanza para resolver esa palabra en un solo intercambio.</p>
+
+    <h2><span class="num">4.</span>Buscá intercambios que resuelvan dos fichas a la vez</h2>
+    <p>El error más común es mover fichas de a una sin plan. Antes de arrastrar una letra, preguntate: <strong>¿esta ficha, movida a tal lugar, deja a la otra también en verde?</strong> Si encontrás ese tipo de intercambios (donde ambas fichas quedan correctas en un solo movimiento), estás resolviendo el doble de rápido.</p>
+    <div class="tip-box"><strong>Tip:</strong> esto pasa muy seguido en las palabras cortas de intersección, donde con frecuencia dos letras están simplemente invertidas entre sí.</div>
+
+    <h2><span class="num">5.</span>Dejá para el final las palabras con letras repetidas</h2>
+    <p>Cuando una palabra tiene una letra repetida (por ejemplo dos A o dos R), las pistas de color se vuelven un poco más ambiguas, porque el amarillo se reparte entre las apariciones de esa letra. Conviene resolver primero las palabras sin repeticiones, porque te dan certezas más simples, y dejar las que tienen letras repetidas para cuando ya tengas más del tablero resuelto y menos combinaciones posibles.</p>
+
+    <h2><span class="num">6.</span>No gastes intercambios "para probar"</h2>
+    <p>Con solo 15 movimientos, cada intercambio que hacés sin una hipótesis clara es un movimiento que no vas a tener disponible después. Antes de mover, tratá de tener al menos una razón concreta (una ficha verde que confirma una posición, una deducción por eliminación) en vez de mover para "ver qué pasa".</p>
+
+    <h2>En resumen</h2>
+    <ul>
+      <li>Priorizá las fichas de intersección: valen por dos palabras.</li>
+      <li>Usá los verdes iniciales como puntos fijos.</li>
+      <li>Deducí por eliminación antes de mover una ficha amarilla.</li>
+      <li>Buscá intercambios que resuelvan dos fichas al mismo tiempo.</li>
+      <li>Dejá las palabras con letras repetidas para el final.</li>
+    </ul>
+
+    <p>Con estas ideas en mente, lo normal es empezar a resolver el tablero con varios intercambios de margen. La mejor forma de afianzarlas es jugando: cada partida de Gofre genera un tablero nuevo, así que podés practicar todas las veces que quieras.</p>
+  </article>
+
+  <div class="cta">
+    <a class="play-btn" href="index.html">Poné en práctica estos trucos →</a>
+  </div>
+
+  <footer>
+    <p><a href="index.html">Gofre</a> — juego de palabras gratuito en español · <a href="como-jugar.html">Cómo se juega</a></p>
+  </footer>
+
+</main>
+</body>
+</html>

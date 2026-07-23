@@ -25,7 +25,63 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
     />
-    <title>Gofre — el waffle de palabras</title>
+
+    <title>
+      Gofre — Juego de palabras en español estilo Waffle (como Wordle)
+    </title>
+    <meta
+      name="description"
+      content="Gofre es un juego de palabras gratis en español inspirado en Waffle: ordená 6 palabras de 5 letras arrastrando fichas en un tablero cruzado. Ideal si te gusta Wordle. Nueva partida cuando quieras."
+    />
+    <meta
+      name="keywords"
+      content="juego de palabras, waffle en español, como wordle, juego waffle, palabras cruzadas online, wordle en español"
+    />
+    <meta name="author" content="Gofre" />
+    <link rel="canonical" href="https://tu-dominio.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Gofre — Juego de palabras en español estilo Waffle"
+    />
+    <meta
+      property="og:description"
+      content="Ordená 6 palabras de 5 letras arrastrando fichas. El waffle de palabras, en español y gratis."
+    />
+    <meta property="og:url" content="https://tu-dominio.com/" />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Gofre — Juego de palabras en español estilo Waffle"
+    />
+    <meta
+      name="twitter:description"
+      content="Ordená 6 palabras de 5 letras arrastrando fichas. El waffle de palabras, en español y gratis."
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": ["WebApplication", "Game"],
+        "name": "Gofre",
+        "alternateName": "Gofre - juego de palabras estilo Waffle",
+        "description": "Juego de palabras gratuito en español inspirado en Waffle: ordená 6 palabras de 5 letras intercambiando fichas en un tablero en forma de waffle, con pistas de color como en Wordle.",
+        "url": "https://tu-dominio.com/",
+        "applicationCategory": "GameApplication",
+        "genre": "Word game",
+        "operatingSystem": "Any (navegador web)",
+        "inLanguage": "es",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
@@ -129,6 +185,43 @@
         color: var(--ink-faint);
         letter-spacing: 0.06em;
         text-transform: uppercase;
+      }
+
+      .sitenav {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+        font-size: 0.76rem;
+      }
+      .sitenav a {
+        color: var(--ink-faint);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .sitenav a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .sitefooter {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.74rem;
+        color: var(--ink-faint);
+        margin-top: 4px;
+      }
+      .sitefooter a {
+        color: var(--ink-faint);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .sitefooter a:hover {
+        color: var(--accent);
       }
 
       .statusbar {
@@ -279,12 +372,14 @@
         background: var(--tile);
         border: 1px solid var(--tile-border);
         color: var(--ink);
-        cursor: pointer;
+        cursor: grab;
+        touch-action: none;
         transition:
           transform 0.12s ease,
           background 0.25s ease,
           border-color 0.25s ease,
-          box-shadow 0.2s ease;
+          box-shadow 0.2s ease,
+          opacity 0.15s ease;
       }
 
       .cell.tile:hover {
@@ -302,16 +397,73 @@
           0 0 0 2px rgba(237, 138, 63, 0.35),
           inset 0 0 0 1px var(--accent);
         transform: translateY(-2px) scale(1.02);
+        animation: selectPulse 0.22s ease;
+      }
+      @keyframes selectPulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.12) translateY(-2px);
+        }
+        100% {
+          transform: translateY(-2px) scale(1.02);
+        }
+      }
+
+      .cell.tile.dragging {
+        opacity: 0.35;
+        cursor: grabbing;
+        z-index: 2;
+      }
+
+      .drag-ghost {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: var(--tile);
+        border: 1px solid var(--accent);
+        color: var(--ink);
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-size: clamp(1.1rem, 5.2vw, 1.65rem);
+        pointer-events: none;
+        z-index: 80;
+        box-shadow:
+          0 14px 30px rgba(0, 0, 0, 0.5),
+          0 0 0 2px rgba(237, 138, 63, 0.4);
+        will-change: transform;
+      }
+      .drag-ghost.yellow {
+        background: var(--yellow);
+        border-color: var(--yellow);
+        color: var(--yellow-ink);
+      }
+
+      .cell.tile.drag-target {
+        border-color: var(--accent);
+        box-shadow:
+          0 0 0 3px rgba(237, 138, 63, 0.4),
+          inset 0 0 0 2px var(--accent);
+        transform: scale(1.08);
+      }
+
+      .cell.tile.locked {
+        pointer-events: none;
+        cursor: default;
+      }
+      .cell.tile.locked:hover {
+        transform: none;
       }
 
       .cell.tile.green {
         background: var(--green);
         border-color: var(--green);
         color: var(--green-ink);
-        cursor: default;
-      }
-      .cell.tile.green:hover {
-        transform: none;
       }
 
       .cell.tile.yellow {
@@ -675,6 +827,13 @@
         </div>
       </header>
 
+      <nav class="sitenav" aria-label="Navegación del sitio">
+        <a href="como-jugar.html">Guía completa: cómo jugar</a>
+        <a href="estrategias-para-ganar-en-gofre.html"
+          >Estrategias para ganar</a
+        >
+      </nav>
+
       <div class="statusbar">
         <div class="counter-card">
           <span class="counter-value" id="counterValue">15</span>
@@ -698,6 +857,12 @@
       </div>
 
       <div class="message" id="message" role="status" aria-live="polite"></div>
+
+      <footer class="sitefooter">
+        <a href="como-jugar.html">Cómo se juega</a>
+        <span aria-hidden="true">·</span>
+        <a href="estrategias-para-ganar-en-gofre.html">Estrategias y trucos</a>
+      </footer>
     </div>
 
     <div class="modal-overlay" id="helpModalOverlay">
@@ -1297,22 +1462,26 @@
                 continue;
               }
               if (rebuild) {
-                el = document.createElement("button");
-                el.type = "button";
+                el = document.createElement("div");
                 el.className = "cell tile";
                 el.id = "cell-" + key;
-                el.setAttribute("aria-label", "ficha");
-                el.addEventListener("click", () => onCellClick(r, c));
+                el.setAttribute("role", "button");
+                el.setAttribute("tabindex", "0");
+                attachTileEvents(el, r, c);
                 boardEl.appendChild(el);
               }
               const st = statuses[key] || "gray";
               el.textContent = current[r][c] || "";
+              el.setAttribute("aria-label", "letra " + (current[r][c] || ""));
               el.classList.remove("green", "yellow", "selected");
               if (st === "green") el.classList.add("green");
               else if (st === "yellow") el.classList.add("yellow");
               if (selected && selected[0] === r && selected[1] === c)
                 el.classList.add("selected");
-              el.disabled = st === "green" || status !== "playing";
+              const locked = st === "green" || status !== "playing";
+              el.classList.toggle("locked", locked);
+              el.setAttribute("aria-disabled", locked ? "true" : "false");
+              el.tabIndex = locked ? -1 : 0;
             }
           }
         }
@@ -1430,23 +1599,7 @@
           return true;
         }
 
-        function onCellClick(r, c) {
-          if (status !== "playing") return;
-          const statuses = computeStatuses();
-          if (statuses[r + "-" + c] === "green") return;
-
-          if (!selected) {
-            selected = [r, c];
-            renderBoard(false);
-            return;
-          }
-          if (selected[0] === r && selected[1] === c) {
-            selected = null;
-            renderBoard(false);
-            return;
-          }
-
-          const [sr, sc] = selected;
+        function doSwap(sr, sc, r, c) {
           const tmp = current[sr][sc];
           current[sr][sc] = current[r][c];
           current[r][c] = tmp;
@@ -1487,6 +1640,141 @@
             setTimeout(openEndModal, 450);
           }
         }
+
+        function handleTap(r, c) {
+          if (status !== "playing") return;
+          const statuses = computeStatuses();
+          if (statuses[r + "-" + c] === "green") return;
+
+          if (!selected) {
+            selected = [r, c];
+            renderBoard(false);
+            return;
+          }
+          if (selected[0] === r && selected[1] === c) {
+            selected = null;
+            renderBoard(false);
+            return;
+          }
+
+          const [sr, sc] = selected;
+          doSwap(sr, sc, r, c);
+        }
+
+        // ---- pointer-based drag to swap, with tap fallback ----
+        const DRAG_THRESHOLD_PX = 6;
+        let dragState = null;
+
+        function attachTileEvents(el, r, c) {
+          el.addEventListener("pointerdown", (e) => {
+            if (status !== "playing") return;
+            if (el.classList.contains("locked")) return;
+            if (e.button !== undefined && e.button !== 0) return;
+            dragState = {
+              startR: r,
+              startC: c,
+              startX: e.clientX,
+              startY: e.clientY,
+              el,
+              moved: false,
+              targetEl: null,
+              pointerId: e.pointerId,
+            };
+          });
+
+          el.addEventListener("keydown", (e) => {
+            if (status !== "playing") return;
+            if (el.classList.contains("locked")) return;
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleTap(r, c);
+            }
+          });
+        }
+
+        function cellFromPoint(x, y) {
+          const target = document.elementFromPoint(x, y);
+          if (!target) return null;
+          return target.closest(".cell.tile");
+        }
+
+        function makeGhost(sourceEl) {
+          const rect = sourceEl.getBoundingClientRect();
+          const ghost = document.createElement("div");
+          ghost.className =
+            "drag-ghost" +
+            (sourceEl.classList.contains("yellow") ? " yellow" : "");
+          ghost.textContent = sourceEl.textContent;
+          ghost.style.width = rect.width + "px";
+          ghost.style.height = rect.height + "px";
+          document.body.appendChild(ghost);
+          return ghost;
+        }
+
+        function moveGhost(ghost, x, y) {
+          ghost.style.transform =
+            "translate(" +
+            x +
+            "px," +
+            y +
+            "px) translate(-50%,-50%) scale(1.08) rotate(-3deg)";
+        }
+
+        document.addEventListener("pointermove", (e) => {
+          if (!dragState) return;
+          const dx = e.clientX - dragState.startX;
+          const dy = e.clientY - dragState.startY;
+
+          if (!dragState.moved && Math.hypot(dx, dy) > DRAG_THRESHOLD_PX) {
+            dragState.moved = true;
+            dragState.el.classList.add("dragging");
+            dragState.ghost = makeGhost(dragState.el);
+            if (selected) {
+              selected = null;
+              renderBoard(false);
+            }
+          }
+
+          if (dragState.moved) {
+            moveGhost(dragState.ghost, e.clientX, e.clientY);
+
+            const hovered = cellFromPoint(e.clientX, e.clientY);
+            const valid =
+              hovered &&
+              hovered !== dragState.el &&
+              !hovered.classList.contains("locked");
+            if (dragState.targetEl && dragState.targetEl !== hovered) {
+              dragState.targetEl.classList.remove("drag-target");
+              dragState.targetEl = null;
+            }
+            if (valid) {
+              hovered.classList.add("drag-target");
+              dragState.targetEl = hovered;
+            }
+          }
+        });
+
+        function endDrag(e) {
+          if (!dragState) return;
+          const ds = dragState;
+          dragState = null;
+
+          ds.el.classList.remove("dragging");
+          if (ds.ghost) ds.ghost.remove();
+          if (ds.targetEl) ds.targetEl.classList.remove("drag-target");
+
+          if (ds.moved) {
+            if (ds.targetEl) {
+              const [tr, tc] = ds.targetEl.id.split("-").slice(1).map(Number);
+              doSwap(ds.startR, ds.startC, tr, tc);
+            }
+          } else {
+            handleTap(ds.startR, ds.startC);
+          }
+        }
+
+        document.addEventListener("pointerup", endDrag);
+        document.addEventListener("pointercancel", endDrag);
 
         newGameBtn.addEventListener("click", newGame);
         modalPlayBtn.addEventListener("click", newGame);
