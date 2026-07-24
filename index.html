@@ -187,6 +187,35 @@
         text-transform: uppercase;
       }
 
+      .blog-btn {
+        position: absolute;
+        top: 2px;
+        right: 40px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--tile-border);
+        background: var(--surface);
+        color: var(--ink-dim);
+        font-size: 0.95rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+      .blog-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .blog-btn:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
       .sitenav {
         display: flex;
         gap: 16px;
@@ -810,6 +839,13 @@
   <body>
     <div class="app">
       <header>
+        <a
+          class="blog-btn"
+          href="blog/index.html"
+          aria-label="Ver el blog"
+          title="Ver el blog"
+          >📰</a
+        >
         <button
           class="help-btn"
           id="helpBtn"
@@ -862,6 +898,8 @@
         <a href="como-jugar.html">Cómo se juega</a>
         <span aria-hidden="true">·</span>
         <a href="estrategias-para-ganar-en-gofre.html">Estrategias y trucos</a>
+        <span aria-hidden="true">·</span>
+        <a href="blog/index.html">Blog</a>
       </footer>
     </div>
 
