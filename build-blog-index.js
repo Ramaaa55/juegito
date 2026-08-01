@@ -46,94 +46,31 @@ const STATIC_PAGES = [
 ];
 
 // ------------------------------------------------------------------
-// Servicios de terceros con consentimiento previo + aviso de cookies.
-// Se inyecta en <head> y justo después de <body> de cada página que
-// genera este script, para que no se pierda si se vuelve a correr.
+// Servicios de terceros: se cargan directamente, sin aviso visible al entrar.
+// Se inyecta en <head> de cada página que genera este script, para que no
+// se pierda si se vuelve a correr.
 // ------------------------------------------------------------------
 const HEAD_CONSENT_SNIPPET = `<script>
 (function(){
-  var CONSENT_KEY = 'gofre_cookie_consent';
-  window.__gofreLoadAds = function(){
-    if(window.__gofreAdsLoaded) return;
-    window.__gofreAdsLoaded = true;
+  var s1 = document.createElement('script');
+  s1.async = true;
+  s1.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4766140355071916';
+  s1.crossOrigin = 'anonymous';
+  document.head.appendChild(s1);
 
-    var s1 = document.createElement('script');
-    s1.async = true;
-    s1.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4766140355071916';
-    s1.crossOrigin = 'anonymous';
-    document.head.appendChild(s1);
+  var s2 = document.createElement('script');
+  s2.async = true;
+  s2.src = 'https://www.googletagmanager.com/gtag/js?id=G-KZ7HHPBYB7';
+  document.head.appendChild(s2);
 
-    var s2 = document.createElement('script');
-    s2.async = true;
-    s2.src = 'https://www.googletagmanager.com/gtag/js?id=G-KZ7HHPBYB7';
-    document.head.appendChild(s2);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'G-KZ7HHPBYB7');
-  };
-  try{
-    if(localStorage.getItem(CONSENT_KEY) === 'accepted'){
-      window.__gofreLoadAds();
-    }
-  }catch(err){ /* sin localStorage: no cargamos servicios de terceros hasta que el usuario decida */ }
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-KZ7HHPBYB7');
 })();
 </script>
 `;
-
-function bannerHtml(privacyHref){
-  return `<style>
-  .cookie-consent{
-    position:fixed; left:0; right:0; bottom:0; z-index:200;
-    background:var(--bg,#1B1712);
-    border-top:1px solid var(--tile-border,#493D2B);
-    padding:14px 18px;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    gap:16px;
-    flex-wrap:wrap;
-    font-family:'Space Grotesk', sans-serif;
-  }
-  .cookie-consent p{ margin:0; color:var(--ink-dim,#B4A48C); font-size:.82rem; max-width:480px; line-height:1.5; }
-  .cookie-consent a{ color:var(--accent,#ED8A3F); }
-  .cookie-consent-actions{ display:flex; gap:8px; flex-shrink:0; }
-  .cookie-btn{ appearance:none; border:none; border-radius:10px; padding:8px 16px; font-family:inherit; font-size:.82rem; font-weight:600; cursor:pointer; }
-  .cookie-btn.accept{ background:var(--accent,#ED8A3F); color:var(--accent-ink,#241207); }
-  .cookie-btn.reject{ background:transparent; color:var(--ink-dim,#B4A48C); border:1px solid var(--tile-border,#493D2B); }
-  @media (max-width:480px){ .cookie-consent{ flex-direction:column; text-align:center; } }
-</style>
-<div id="cookieConsent" class="cookie-consent">
-  <p>Usamos cookies propias y de terceros para medir el uso del sitio y mostrar contenido relevante. <a href="${privacyHref}">Más información</a>.</p>
-  <div class="cookie-consent-actions">
-    <button id="cookieAccept" class="cookie-btn accept" type="button">Aceptar</button>
-    <button id="cookieReject" class="cookie-btn reject" type="button">Rechazar</button>
-  </div>
-</div>
-<script>
-(function(){
-  var CONSENT_KEY = 'gofre_cookie_consent';
-  var banner = document.getElementById('cookieConsent');
-  var stored = null;
-  try{ stored = localStorage.getItem(CONSENT_KEY); }catch(err){}
-  if(!stored && banner){ banner.style.display = 'flex'; }
-  var acceptBtn = document.getElementById('cookieAccept');
-  var rejectBtn = document.getElementById('cookieReject');
-  if(acceptBtn) acceptBtn.addEventListener('click', function(){
-    try{ localStorage.setItem(CONSENT_KEY, 'accepted'); }catch(err){}
-    if(banner) banner.style.display = 'none';
-    if(window.__gofreLoadAds) window.__gofreLoadAds();
-  });
-  if(rejectBtn) rejectBtn.addEventListener('click', function(){
-    try{ localStorage.setItem(CONSENT_KEY, 'rejected'); }catch(err){}
-    if(banner) banner.style.display = 'none';
-  });
-})();
-</script>
-`;
-}
 
 // ------------------------------------------------------------------
 // Utilidades
@@ -280,7 +217,6 @@ ${JSON.stringify(jsonLd, null, 2)}
 <style>${baseStyles()}</style>
 </head>
 <body>
-${bannerHtml('../privacidad.html')}
 <main>
   <header class="page-head">
     <div class="brand"><span class="dot"></span><span class="name">${SITE_NAME}</span></div>
