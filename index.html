@@ -1,24 +1,41 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <link rel="icon" href="waffle.png" />
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4766140355071916"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-KZ7HHPBYB7"
-    ></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-KZ7HHPBYB7");
+      (function () {
+        var CONSENT_KEY = "gofre_cookie_consent";
+        window.__gofreLoadAds = function () {
+          if (window.__gofreAdsLoaded) return;
+          window.__gofreAdsLoaded = true;
+
+          var s1 = document.createElement("script");
+          s1.async = true;
+          s1.src =
+            "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4766140355071916";
+          s1.crossOrigin = "anonymous";
+          document.head.appendChild(s1);
+
+          var s2 = document.createElement("script");
+          s2.async = true;
+          s2.src = "https://www.googletagmanager.com/gtag/js?id=G-KZ7HHPBYB7";
+          document.head.appendChild(s2);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          window.gtag = gtag;
+          gtag("js", new Date());
+          gtag("config", "G-KZ7HHPBYB7");
+        };
+        try {
+          if (localStorage.getItem(CONSENT_KEY) === "accepted") {
+            window.__gofreLoadAds();
+          }
+        } catch (err) {
+          /* sin localStorage: no cargamos Analytics/Ads hasta que el usuario decida */
+        }
+      })();
     </script>
 
     <meta charset="UTF-8" />
@@ -27,9 +44,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
     />
 
-    <title>
-      Gofre — Juego de palabras en español estilo Waffle (como Wordle)
-    </title>
+    <title>Gofre — Juego de palabras en español</title>
     <meta
       name="description"
       content="Gofre es un juego de palabras gratis en español inspirado en Waffle: ordená 6 palabras de 5 letras arrastrando fichas en un tablero cruzado. Ideal si te gusta Wordle. Nueva partida cuando quieras."
@@ -215,6 +230,37 @@
       .blog-btn:focus-visible {
         outline: 2px solid var(--accent);
         outline-offset: 2px;
+      }
+
+      .sound-btn {
+        position: absolute;
+        top: 2px;
+        right: 78px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--tile-border);
+        background: var(--surface);
+        color: var(--ink-dim);
+        font-size: 0.9rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+      .sound-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .sound-btn:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .sound-btn.muted {
+        opacity: 0.55;
       }
 
       .sitenav {
@@ -736,7 +782,6 @@
 
       @media (prefers-reduced-motion: reduce) {
         .cell,
-        .newgame-btn,
         .pip,
         .modal-overlay,
         .modal-card {
@@ -849,8 +894,120 @@
     </style>
   </head>
   <body>
+    <style>
+      .cookie-consent {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 200;
+        background: var(--bg, #1b1712);
+        border-top: 1px solid var(--tile-border, #493d2b);
+        padding: 14px 18px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .cookie-consent p {
+        margin: 0;
+        color: var(--ink-dim, #b4a48c);
+        font-size: 0.82rem;
+        max-width: 480px;
+        line-height: 1.5;
+      }
+      .cookie-consent a {
+        color: var(--accent, #ed8a3f);
+      }
+      .cookie-consent-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .cookie-btn {
+        appearance: none;
+        border: none;
+        border-radius: 10px;
+        padding: 8px 16px;
+        font-family: inherit;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .cookie-btn.accept {
+        background: var(--accent, #ed8a3f);
+        color: var(--accent-ink, #241207);
+      }
+      .cookie-btn.reject {
+        background: transparent;
+        color: var(--ink-dim, #b4a48c);
+        border: 1px solid var(--tile-border, #493d2b);
+      }
+      @media (max-width: 480px) {
+        .cookie-consent {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+    <div id="cookieConsent" class="cookie-consent">
+      <p>
+        Usamos cookies propias y de Google (Analytics y AdSense) para medir el
+        uso del sitio y mostrar anuncios.
+        <a href="privacidad.html">Más información</a>.
+      </p>
+      <div class="cookie-consent-actions">
+        <button id="cookieAccept" class="cookie-btn accept" type="button">
+          Aceptar
+        </button>
+        <button id="cookieReject" class="cookie-btn reject" type="button">
+          Rechazar
+        </button>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var CONSENT_KEY = "gofre_cookie_consent";
+        var banner = document.getElementById("cookieConsent");
+        var stored = null;
+        try {
+          stored = localStorage.getItem(CONSENT_KEY);
+        } catch (err) {}
+        if (!stored && banner) {
+          banner.style.display = "flex";
+        }
+        var acceptBtn = document.getElementById("cookieAccept");
+        var rejectBtn = document.getElementById("cookieReject");
+        if (acceptBtn)
+          acceptBtn.addEventListener("click", function () {
+            try {
+              localStorage.setItem(CONSENT_KEY, "accepted");
+            } catch (err) {}
+            if (banner) banner.style.display = "none";
+            if (window.__gofreLoadAds) window.__gofreLoadAds();
+          });
+        if (rejectBtn)
+          rejectBtn.addEventListener("click", function () {
+            try {
+              localStorage.setItem(CONSENT_KEY, "rejected");
+            } catch (err) {}
+            if (banner) banner.style.display = "none";
+          });
+      })();
+    </script>
+
     <div class="app">
       <header>
+        <button
+          class="sound-btn"
+          id="soundBtn"
+          aria-label="Silenciar sonido"
+          title="Silenciar sonido"
+        >
+          🔊
+        </button>
         <a
           class="blog-btn"
           href="blog/index.html"
@@ -915,6 +1072,10 @@
         <a href="estrategias-para-ganar-en-gofre.html">Estrategias y trucos</a>
         <span aria-hidden="true">·</span>
         <a href="blog/index.html">Blog</a>
+        <span aria-hidden="true">·</span>
+        <a href="privacidad.html">Privacidad</a>
+        <span aria-hidden="true">·</span>
+        <a href="terminos.html">Términos</a>
       </footer>
     </div>
 
@@ -1354,6 +1515,133 @@
           { key: "C4", positions: colWordPositions(4) },
         ];
 
+        // ------------------------------------------------------------------
+        // Sonido — Web Audio API, sin archivos externos.
+        // ------------------------------------------------------------------
+        let soundEnabled = true;
+        try {
+          soundEnabled = localStorage.getItem("gofre_sound_muted") !== "1";
+        } catch (err) {
+          /* sin storage: sonido activado por defecto */
+        }
+
+        let audioCtx = null;
+        function getAudioCtx() {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (!Ctx) return null;
+          if (!audioCtx) audioCtx = new Ctx();
+          if (audioCtx.state === "suspended") audioCtx.resume();
+          return audioCtx;
+        }
+
+        function playTone(
+          ctx,
+          {
+            freq,
+            type = "sine",
+            gain = 0.15,
+            attack = 0.004,
+            decay = 0.12,
+            startTime = 0,
+          },
+        ) {
+          const t0 = ctx.currentTime + startTime;
+          const osc = ctx.createOscillator();
+          const gainNode = ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, t0);
+          gainNode.gain.setValueAtTime(0, t0);
+          gainNode.gain.linearRampToValueAtTime(gain, t0 + attack);
+          gainNode.gain.exponentialRampToValueAtTime(
+            0.0001,
+            t0 + attack + decay,
+          );
+          osc.connect(gainNode).connect(ctx.destination);
+          osc.start(t0);
+          osc.stop(t0 + attack + decay + 0.03);
+        }
+
+        // Sonido corto y "seco" al mover una ficha: un pequeño golpe de dos capas.
+        function playSwapSound() {
+          if (!soundEnabled) return;
+          const ctx = getAudioCtx();
+          if (!ctx) return;
+          try {
+            playTone(ctx, {
+              freq: 560,
+              type: "sine",
+              gain: 0.13,
+              attack: 0.002,
+              decay: 0.07,
+            });
+            playTone(ctx, {
+              freq: 880,
+              type: "triangle",
+              gain: 0.05,
+              attack: 0.001,
+              decay: 0.045,
+            });
+          } catch (err) {
+            /* audio no disponible en este navegador */
+          }
+        }
+
+        // Pequeño arpegio ascendente (acorde mayor) cuando una palabra queda toda en verde.
+        function playWordCompleteSound(delay) {
+          if (!soundEnabled) return;
+          const ctx = getAudioCtx();
+          if (!ctx) return;
+          try {
+            const notes = [523.25, 659.25, 783.99]; // Do5, Mi5, Sol5
+            notes.forEach((freq, i) => {
+              const t = (delay || 0) + i * 0.085;
+              playTone(ctx, {
+                freq,
+                type: "sine",
+                gain: 0.16,
+                attack: 0.004,
+                decay: 0.24,
+                startTime: t,
+              });
+              playTone(ctx, {
+                freq: freq * 2,
+                type: "sine",
+                gain: 0.035,
+                attack: 0.004,
+                decay: 0.16,
+                startTime: t,
+              });
+            });
+          } catch (err) {
+            /* audio no disponible en este navegador */
+          }
+        }
+
+        function computeCompletedWordKeys() {
+          const set = new Set();
+          for (const group of WORD_GROUPS) {
+            const allCorrect = group.positions.every(
+              ([r, c]) => current[r][c] === solution[r][c],
+            );
+            if (allCorrect) set.add(group.key);
+          }
+          return set;
+        }
+
+        function updateSoundBtnUI() {
+          if (!soundBtn) return;
+          soundBtn.textContent = soundEnabled ? "🔊" : "🔇";
+          soundBtn.classList.toggle("muted", !soundEnabled);
+          soundBtn.setAttribute(
+            "aria-label",
+            soundEnabled ? "Silenciar sonido" : "Activar sonido",
+          );
+          soundBtn.setAttribute(
+            "title",
+            soundEnabled ? "Silenciar sonido" : "Activar sonido",
+          );
+        }
+
         function shuffle(arr, rng) {
           const rnd = rng || Math.random;
           const a = arr.slice();
@@ -1466,6 +1754,7 @@
         let swapsRemaining = SWAPS_ALLOWED;
         let selected = null; // [r,c] or null
         let status = "playing"; // playing | won | lost
+        let completedWordKeys = new Set(); // palabras ya en verde, para no repetir el sonido
 
         const boardEl = document.getElementById("board");
         const messageEl = document.getElementById("message");
@@ -1477,6 +1766,7 @@
         const modalCountdownTimer = document.getElementById(
           "modalCountdownTimer",
         );
+        const soundBtn = document.getElementById("soundBtn");
 
         const helpBtn = document.getElementById("helpBtn");
         const helpModalOverlay = document.getElementById("helpModalOverlay");
@@ -1566,6 +1856,7 @@
           swapsRemaining = saved ? saved.swapsRemaining : SWAPS_ALLOWED;
           status = saved ? saved.status : "playing";
           selected = null;
+          completedWordKeys = computeCompletedWordKeys();
 
           if (status === "won") {
             messageEl.textContent = "¡Resuelto! El waffle está listo.";
@@ -1800,6 +2091,17 @@
             );
           });
 
+          playSwapSound();
+          const newlyCompleted = computeCompletedWordKeys();
+          let chimeIndex = 0;
+          newlyCompleted.forEach((key) => {
+            if (!completedWordKeys.has(key)) {
+              playWordCompleteSound(0.08 + chimeIndex * 0.14);
+              chimeIndex++;
+            }
+          });
+          completedWordKeys = newlyCompleted;
+
           if (checkWin()) {
             status = "won";
             messageEl.textContent = "¡Resuelto! El waffle está listo.";
@@ -2028,6 +2330,23 @@
         helpModalOverlay.addEventListener("click", (e) => {
           if (e.target === helpModalOverlay) closeHelp();
         });
+
+        if (soundBtn) {
+          updateSoundBtnUI();
+          soundBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            try {
+              localStorage.setItem(
+                "gofre_sound_muted",
+                soundEnabled ? "0" : "1",
+              );
+            } catch (err) {
+              /* sin storage */
+            }
+            updateSoundBtnUI();
+            if (soundEnabled) getAudioCtx();
+          });
+        }
 
         loadTodaysGofre();
         tickCountdown();

@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <script>
+      (function () {
+        var CONSENT_KEY = "gofre_cookie_consent";
+        window.__gofreLoadAds = function () {
+          if (window.__gofreAdsLoaded) return;
+          window.__gofreAdsLoaded = true;
+
+          var s1 = document.createElement("script");
+          s1.async = true;
+          s1.src =
+            "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4766140355071916";
+          s1.crossOrigin = "anonymous";
+          document.head.appendChild(s1);
+
+          var s2 = document.createElement("script");
+          s2.async = true;
+          s2.src = "https://www.googletagmanager.com/gtag/js?id=G-KZ7HHPBYB7";
+          document.head.appendChild(s2);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          window.gtag = gtag;
+          gtag("js", new Date());
+          gtag("config", "G-KZ7HHPBYB7");
+        };
+        try {
+          if (localStorage.getItem(CONSENT_KEY) === "accepted") {
+            window.__gofreLoadAds();
+          }
+        } catch (err) {
+          /* sin localStorage: no cargamos servicios de terceros hasta que el usuario decida */
+        }
+      })();
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Política de Privacidad — Gofre</title>
+    <meta
+      name="description"
+      content="Política de privacidad de Gofre: qué datos se guardan, para qué se usan, y qué servicios de terceros operan en el sitio."
+    />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://tu-dominio.com/privacidad.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #1b1712;
+        --surface: #251f17;
+        --tile: #332b20;
+        --tile-border: #493d2b;
+        --ink: #f4ecdc;
+        --ink-dim: #b4a48c;
+        --ink-faint: #7a6e5b;
+        --accent: #ed8a3f;
+        --accent-ink: #241207;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(
+            circle at 20% -10%,
+            rgba(237, 138, 63, 0.08),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 100% 10%,
+            rgba(237, 138, 63, 0.05),
+            transparent 40%
+          ),
+          var(--bg);
+        color: var(--ink);
+        font-family: "Space Grotesk", sans-serif;
+        padding: 32px 18px 60px;
+      }
+      main {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      a {
+        color: var(--accent);
+      }
+      header.page-head {
+        text-align: center;
+        margin-bottom: 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .brand .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 12px rgba(237, 138, 63, 0.7);
+      }
+      .brand span.name {
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 1.6rem;
+      }
+      h1 {
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-size: 1.75rem;
+        line-height: 1.25;
+        margin: 6px 0 4px;
+      }
+      .meta {
+        color: var(--ink-faint);
+        font-size: 0.76rem;
+        margin-top: 2px;
+      }
+      nav.sitenav {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 0.8rem;
+        margin-top: 14px;
+      }
+      nav.sitenav a {
+        text-decoration: none;
+        color: var(--ink-dim);
+        border-bottom: 1px solid transparent;
+      }
+      nav.sitenav a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      section {
+        background: var(--surface);
+        border: 1px solid var(--tile-border);
+        border-radius: 16px;
+        padding: 22px 24px;
+        margin-bottom: 18px;
+      }
+      section h2 {
+        font-family: "Fraunces", serif;
+        font-size: 1.1rem;
+        margin: 0 0 10px;
+      }
+      section p {
+        color: var(--ink-dim);
+        line-height: 1.65;
+        font-size: 0.92rem;
+        margin: 0 0 12px;
+      }
+      section p:last-child {
+        margin-bottom: 0;
+      }
+      section ul {
+        color: var(--ink-dim);
+        line-height: 1.7;
+        font-size: 0.92rem;
+        padding-left: 1.2em;
+        margin: 0;
+      }
+      section li {
+        margin-bottom: 6px;
+      }
+      strong {
+        color: var(--ink);
+      }
+      .notice {
+        background: var(--tile);
+        border: 1px solid var(--tile-border);
+        border-left: 3px solid var(--accent);
+        border-radius: 10px;
+        padding: 14px 18px;
+        font-size: 0.86rem;
+        color: var(--ink-dim);
+        margin-bottom: 24px;
+      }
+      footer {
+        text-align: center;
+        color: var(--ink-faint);
+        font-size: 0.76rem;
+        margin-top: 30px;
+      }
+      footer a {
+        color: var(--ink-faint);
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      .cookie-consent {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 200;
+        background: var(--bg, #1b1712);
+        border-top: 1px solid var(--tile-border, #493d2b);
+        padding: 14px 18px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .cookie-consent p {
+        margin: 0;
+        color: var(--ink-dim, #b4a48c);
+        font-size: 0.82rem;
+        max-width: 480px;
+        line-height: 1.5;
+      }
+      .cookie-consent a {
+        color: var(--accent, #ed8a3f);
+      }
+      .cookie-consent-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .cookie-btn {
+        appearance: none;
+        border: none;
+        border-radius: 10px;
+        padding: 8px 16px;
+        font-family: inherit;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .cookie-btn.accept {
+        background: var(--accent, #ed8a3f);
+        color: var(--accent-ink, #241207);
+      }
+      .cookie-btn.reject {
+        background: transparent;
+        color: var(--ink-dim, #b4a48c);
+        border: 1px solid var(--tile-border, #493d2b);
+      }
+      @media (max-width: 480px) {
+        .cookie-consent {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+    <div id="cookieConsent" class="cookie-consent">
+      <p>
+        Usamos cookies propias y de terceros para medir el uso del sitio y
+        mostrar contenido relevante.
+        <a href="privacidad.html">Más información</a>.
+      </p>
+      <div class="cookie-consent-actions">
+        <button id="cookieAccept" class="cookie-btn accept" type="button">
+          Aceptar
+        </button>
+        <button id="cookieReject" class="cookie-btn reject" type="button">
+          Rechazar
+        </button>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var CONSENT_KEY = "gofre_cookie_consent";
+        var banner = document.getElementById("cookieConsent");
+        var stored = null;
+        try {
+          stored = localStorage.getItem(CONSENT_KEY);
+        } catch (err) {}
+        if (!stored && banner) {
+          banner.style.display = "flex";
+        }
+        var acceptBtn = document.getElementById("cookieAccept");
+        var rejectBtn = document.getElementById("cookieReject");
+        if (acceptBtn)
+          acceptBtn.addEventListener("click", function () {
+            try {
+              localStorage.setItem(CONSENT_KEY, "accepted");
+            } catch (err) {}
+            if (banner) banner.style.display = "none";
+            if (window.__gofreLoadAds) window.__gofreLoadAds();
+          });
+        if (rejectBtn)
+          rejectBtn.addEventListener("click", function () {
+            try {
+              localStorage.setItem(CONSENT_KEY, "rejected");
+            } catch (err) {}
+            if (banner) banner.style.display = "none";
+          });
+      })();
+    </script>
+
+    <main>
+      <header class="page-head">
+        <div class="brand">
+          <span class="dot"></span><span class="name">Gofre</span>
+        </div>
+        <h1>Política de Privacidad</h1>
+        <p class="meta">Última actualización: 24 de julio de 2026</p>
+        <nav class="sitenav" aria-label="Navegación del sitio">
+          <a href="index.html">Jugar</a>
+          <a href="como-jugar.html">Cómo se juega</a>
+          <a href="blog/index.html">Blog</a>
+        </nav>
+      </header>
+
+      <div class="notice">
+        Esta política es un modelo general y no reemplaza el asesoramiento de un
+        abogado. Si tu sitio recibe visitas desde la Unión Europea, California u
+        otras jurisdicciones con leyes de privacidad específicas (como el RGPD o
+        la CCPA), es recomendable revisar esta política con un profesional y, en
+        muchos casos, agregar un aviso de consentimiento de cookies antes de
+        mostrar anuncios o activar herramientas de medición.
+      </div>
+
+      <section>
+        <h2>Qué información recopilamos</h2>
+        <p>
+          Gofre es un juego que funciona enteramente en tu navegador. La mayor
+          parte de la información que genera tu partida —el estado del tablero,
+          cuántos intercambios usaste, si preferís el sonido activado o
+          silenciado— se guarda únicamente en tu propio dispositivo, usando el
+          almacenamiento local del navegador (<em>localStorage</em>). Esa
+          información no se envía a ningún servidor nuestro ni la podemos ver.
+        </p>
+        <p>
+          Además, este sitio utiliza los siguientes servicios de terceros, que
+          pueden recopilar información de forma independiente:
+        </p>
+        <ul>
+          <li>
+            <strong>Herramienta de analítica:</strong> recopila datos anónimos
+            de uso (páginas visitadas, tiempo en el sitio, ubicación aproximada)
+            para entender cómo se usa Gofre.
+          </li>
+          <li>
+            <strong>Red de publicidad:</strong> puede mostrar anuncios
+            personalizados y utiliza cookies propias y de terceros para ese fin.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Cómo usamos esa información</h2>
+        <p>
+          Usamos los datos agregados y anónimos de estas herramientas para
+          mejorar el juego: saber qué páginas se visitan más, si hay errores
+          frecuentes, o qué contenido del blog genera más interés. No
+          identificamos personalmente a los usuarios con esta información.
+        </p>
+      </section>
+
+      <section>
+        <h2>Cookies y almacenamiento local</h2>
+        <p>
+          Este sitio no usa cookies propias para el funcionamiento del juego
+          (usamos <em>localStorage</em>, que es distinto y no se comparte entre
+          sitios). Sin embargo, los servicios de terceros mencionados arriba sí
+          pueden instalar sus propias cookies en tu navegador. Podés gestionar o
+          eliminar esas cookies desde la configuración de tu navegador en
+          cualquier momento.
+        </p>
+      </section>
+
+      <section>
+        <h2>Servicios de terceros</h2>
+        <p>
+          Estos proveedores procesan los datos según sus propias políticas de
+          privacidad. Podés leerlas acá:
+        </p>
+        <ul>
+          <li>
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener"
+              >Política de privacidad de nuestros proveedores de servicios</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://policies.google.com/technologies/ads"
+              target="_blank"
+              rel="noopener"
+              >Cómo se usan los datos en sitios que utilizan estos servicios</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tus opciones</h2>
+        <p>
+          Podés borrar el progreso guardado de Gofre en cualquier momento
+          eliminando los datos de navegación de tu navegador para este sitio.
+          También podés inhabilitar los anuncios personalizados desde la
+          <a
+            href="https://adssettings.google.com"
+            target="_blank"
+            rel="noopener"
+            >configuración de anuncios de tu cuenta</a
+          >.
+        </p>
+      </section>
+
+      <section>
+        <h2>Menores de edad</h2>
+        <p>
+          Gofre no está dirigido específicamente a menores de 13 años y no
+          recopilamos intencionalmente información personal identificable de
+          nadie, sin importar la edad.
+        </p>
+      </section>
+
+      <section>
+        <h2>Cambios en esta política</h2>
+        <p>
+          Podemos actualizar esta política ocasionalmente. Si hacemos cambios
+          importantes, vamos a actualizar la fecha al principio de esta página.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contacto</h2>
+        <p>
+          Si tenés preguntas sobre esta política, podés escribirnos a
+          <strong>gofrejuego@gmail.com</strong>
+        </p>
+      </section>
+
+      <footer>
+        <p>
+          <a href="index.html">Gofre</a> ·
+          <a href="terminos.html">Términos y condiciones</a>
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

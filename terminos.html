@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <script>
+      (function () {
+        var CONSENT_KEY = "gofre_cookie_consent";
+        window.__gofreLoadAds = function () {
+          if (window.__gofreAdsLoaded) return;
+          window.__gofreAdsLoaded = true;
+
+          var s1 = document.createElement("script");
+          s1.async = true;
+          s1.src =
+            "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4766140355071916";
+          s1.crossOrigin = "anonymous";
+          document.head.appendChild(s1);
+
+          var s2 = document.createElement("script");
+          s2.async = true;
+          s2.src = "https://www.googletagmanager.com/gtag/js?id=G-KZ7HHPBYB7";
+          document.head.appendChild(s2);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          window.gtag = gtag;
+          gtag("js", new Date());
+          gtag("config", "G-KZ7HHPBYB7");
+        };
+        try {
+          if (localStorage.getItem(CONSENT_KEY) === "accepted") {
+            window.__gofreLoadAds();
+          }
+        } catch (err) {
+          /* sin localStorage: no cargamos servicios de terceros hasta que el usuario decida */
+        }
+      })();
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Términos y Condiciones — Gofre</title>
+    <meta
+      name="description"
+      content="Términos y condiciones de uso de Gofre, el juego de palabras diario en español."
+    />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://tu-dominio.com/terminos.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #1b1712;
+        --surface: #251f17;
+        --tile: #332b20;
+        --tile-border: #493d2b;
+        --ink: #f4ecdc;
+        --ink-dim: #b4a48c;
+        --ink-faint: #7a6e5b;
+        --accent: #ed8a3f;
+        --accent-ink: #241207;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(
+            circle at 20% -10%,
+            rgba(237, 138, 63, 0.08),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 100% 10%,
+            rgba(237, 138, 63, 0.05),
+            transparent 40%
+          ),
+          var(--bg);
+        color: var(--ink);
+        font-family: "Space Grotesk", sans-serif;
+        padding: 32px 18px 60px;
+      }
+      main {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      a {
+        color: var(--accent);
+      }
+      header.page-head {
+        text-align: center;
+        margin-bottom: 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .brand .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 12px rgba(237, 138, 63, 0.7);
+      }
+      .brand span.name {
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 1.6rem;
+      }
+      h1 {
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-size: 1.75rem;
+        line-height: 1.25;
+        margin: 6px 0 4px;
+      }
+      .meta {
+        color: var(--ink-faint);
+        font-size: 0.76rem;
+        margin-top: 2px;
+      }
+      nav.sitenav {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 0.8rem;
+        margin-top: 14px;
+      }
+      nav.sitenav a {
+        text-decoration: none;
+        color: var(--ink-dim);
+        border-bottom: 1px solid transparent;
+      }
+      nav.sitenav a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      section {
+        background: var(--surface);
+        border: 1px solid var(--tile-border);
+        border-radius: 16px;
+        padding: 22px 24px;
+        margin-bottom: 18px;
+      }
+      section h2 {
+        font-family: "Fraunces", serif;
+        font-size: 1.1rem;
+        margin: 0 0 10px;
+      }
+      section p {
+        color: var(--ink-dim);
+        line-height: 1.65;
+        font-size: 0.92rem;
+        margin: 0 0 12px;
+      }
+      section p:last-child {
+        margin-bottom: 0;
+      }
+      section ul {
+        color: var(--ink-dim);
+        line-height: 1.7;
+        font-size: 0.92rem;
+        padding-left: 1.2em;
+        margin: 0;
+      }
+      section li {
+        margin-bottom: 6px;
+      }
+      strong {
+        color: var(--ink);
+      }
+      .notice {
+        background: var(--tile);
+        border: 1px solid var(--tile-border);
+        border-left: 3px solid var(--accent);
+        border-radius: 10px;
+        padding: 14px 18px;
+        font-size: 0.86rem;
+        color: var(--ink-dim);
+        margin-bottom: 24px;
+      }
+      footer {
+        text-align: center;
+        color: var(--ink-faint);
+        font-size: 0.76rem;
+        margin-top: 30px;
+      }
+      footer a {
+        color: var(--ink-faint);
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      .cookie-consent {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 200;
+        background: var(--bg, #1b1712);
+        border-top: 1px solid var(--tile-border, #493d2b);
+        padding: 14px 18px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .cookie-consent p {
+        margin: 0;
+        color: var(--ink-dim, #b4a48c);
+        font-size: 0.82rem;
+        max-width: 480px;
+        line-height: 1.5;
+      }
+      .cookie-consent a {
+        color: var(--accent, #ed8a3f);
+      }
+      .cookie-consent-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .cookie-btn {
+        appearance: none;
+        border: none;
+        border-radius: 10px;
+        padding: 8px 16px;
+        font-family: inherit;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .cookie-btn.accept {
+        background: var(--accent, #ed8a3f);
+        color: var(--accent-ink, #241207);
+      }
+      .cookie-btn.reject {
+        background: transparent;
+        color: var(--ink-dim, #b4a48c);
+        border: 1px solid var(--tile-border, #493d2b);
+      }
+      @media (max-width: 480px) {
+        .cookie-consent {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+    <div id="cookieConsent" class="cookie-consent">
+      <p>
+        Usamos cookies propias y de terceros para medir el uso del sitio y
+        mostrar contenido relevante.
+        <a href="privacidad.html">Más información</a>.
+      </p>
+      <div class="cookie-consent-actions">
+        <button id="cookieAccept" class="cookie-btn accept" type="button">
+          Aceptar
+        </button>
+        <button id="cookieReject" class="cookie-btn reject" type="button">
+          Rechazar
+        </button>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var CONSENT_KEY = "gofre_cookie_consent";
+        var banner = document.getElementById("cookieConsent");
+        var stored = null;
+        try {
+          stored = localStorage.getItem(CONSENT_KEY);
+        } catch (err) {}
+        if (!stored && banner) {
+          banner.style.display = "flex";
+        }
+        var acceptBtn = document.getElementById("cookieAccept");
+        var rejectBtn = document.getElementById("cookieReject");
+        if (acceptBtn)
+          acceptBtn.addEventListener("click", function () {
+            try {
+              localStorage.setItem(CONSENT_KEY, "accepted");
+            } catch (err) {}
+            if (banner) banner.style.display = "none";
+            if (window.__gofreLoadAds) window.__gofreLoadAds();
+          });
+        if (rejectBtn)
+          rejectBtn.addEventListener("click", function () {
+            try {
+              localStorage.setItem(CONSENT_KEY, "rejected");
+            } catch (err) {}
+            if (banner) banner.style.display = "none";
+          });
+      })();
+    </script>
+
+    <main>
+      <header class="page-head">
+        <div class="brand">
+          <span class="dot"></span><span class="name">Gofre</span>
+        </div>
+        <h1>Términos y Condiciones</h1>
+        <p class="meta">Última actualización: 24 de julio de 2026</p>
+        <nav class="sitenav" aria-label="Navegación del sitio">
+          <a href="index.html">Jugar</a>
+          <a href="como-jugar.html">Cómo se juega</a>
+          <a href="blog/index.html">Blog</a>
+        </nav>
+      </header>
+
+      <div class="notice">
+        Este texto es un modelo general de términos de uso y no constituye
+        asesoramiento legal. Antes de publicar tu sitio, es recomendable que lo
+        revise un abogado familiarizado con las leyes de tu país (por ejemplo,
+        en materia de protección al consumidor, publicidad online y propiedad
+        intelectual).
+      </div>
+
+      <section>
+        <h2>Aceptación de los términos</h2>
+        <p>
+          Al acceder y usar Gofre, aceptás estos términos y condiciones. Si no
+          estás de acuerdo con alguno de los puntos, te pedimos que no uses el
+          sitio.
+        </p>
+      </section>
+
+      <section>
+        <h2>Descripción del servicio</h2>
+        <p>
+          Gofre es un juego de palabras diario y gratuito, pensado para jugarse
+          en el navegador. Una nueva partida está disponible todos los días a
+          las 00:00 (hora GMT-3). El servicio se ofrece "tal cual está", sin
+          garantías de disponibilidad ininterrumpida.
+        </p>
+      </section>
+
+      <section>
+        <h2>Uso permitido</h2>
+        <p>
+          Podés jugar a Gofre libremente para uso personal y no comercial. No
+          está permitido:
+        </p>
+        <ul>
+          <li>
+            Intentar automatizar, hacer scraping o manipular el juego para
+            obtener ventajas indebidas.
+          </li>
+          <li>
+            Copiar, redistribuir o revender el contenido del sitio sin
+            autorización.
+          </li>
+          <li>
+            Usar el sitio de forma que pueda dañar, sobrecargar o afectar su
+            funcionamiento normal.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Propiedad intelectual</h2>
+        <p>
+          El nombre, el diseño, los textos y el código de Gofre son propiedad de
+          sus creadores, salvo donde se indique lo contrario. El juego está
+          inspirado en la mecánica de otros juegos de palabras existentes, pero
+          su implementación, contenido y marca son propios.
+        </p>
+      </section>
+
+      <section>
+        <h2>Publicidad y servicios de terceros</h2>
+        <p>
+          Este sitio puede mostrar anuncios y utilizar herramientas de medición
+          para entender el tráfico. Estos servicios operan bajo sus propias
+          condiciones y políticas, que podés consultar en la
+          <a href="privacidad.html">Política de Privacidad</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>Limitación de responsabilidad</h2>
+        <p>
+          Gofre se ofrece de forma gratuita y "tal cual está". No garantizamos
+          que el servicio esté libre de errores o interrupciones. En la medida
+          permitida por la ley, no somos responsables por daños indirectos
+          derivados del uso o la imposibilidad de uso del sitio.
+        </p>
+      </section>
+
+      <section>
+        <h2>Cambios en el servicio o en estos términos</h2>
+        <p>
+          Podemos modificar el juego, agregar o quitar funciones, y actualizar
+          estos términos en cualquier momento. Si hacemos cambios importantes,
+          vamos a actualizar la fecha al principio de esta página.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contacto</h2>
+        <p>
+          Ante cualquier consulta sobre estos términos, podés escribirnos a
+          <strong>gofrejuego@gmail.com</strong>
+        </p>
+      </section>
+
+      <footer>
+        <p>
+          <a href="index.html">Gofre</a> ·
+          <a href="privacidad.html">Política de privacidad</a>
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

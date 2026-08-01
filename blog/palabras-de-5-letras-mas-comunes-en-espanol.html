@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <script>
+      (function () {
+        var CONSENT_KEY = "gofre_cookie_consent";
+        window.__gofreLoadAds = function () {
+          if (window.__gofreAdsLoaded) return;
+          window.__gofreAdsLoaded = true;
+
+          var s1 = document.createElement("script");
+          s1.async = true;
+          s1.src =
+            "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4766140355071916";
+          s1.crossOrigin = "anonymous";
+          document.head.appendChild(s1);
+
+          var s2 = document.createElement("script");
+          s2.async = true;
+          s2.src = "https://www.googletagmanager.com/gtag/js?id=G-KZ7HHPBYB7";
+          document.head.appendChild(s2);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          window.gtag = gtag;
+          gtag("js", new Date());
+          gtag("config", "G-KZ7HHPBYB7");
+        };
+        try {
+          if (localStorage.getItem(CONSENT_KEY) === "accepted") {
+            window.__gofreLoadAds();
+          }
+        } catch (err) {
+          /* sin localStorage: no cargamos servicios de terceros hasta que el usuario decida */
+        }
+      })();
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+      Las palabras de 5 letras más comunes en español (y cómo te ayudan en
+      Gofre) — Blog de Gofre
+    </title>
+    <meta
+      name="description"
+      content="Conocer los patrones más frecuentes entre las palabras de 5 letras en español te da una ventaja real para resolver Gofre más rápido. Te mostramos cuáles son."
+    />
+    <meta name="date" content="2026-07-26" />
+    <meta
+      name="keywords"
+      content="palabras de 5 letras en español, vocabulario wordle, lista palabras 5 letras, patrones de palabras"
+    />
+
+    <link
+      rel="canonical"
+      href="https://tu-dominio.com/blog/palabras-de-5-letras-mas-comunes-en-espanol.html"
+    />
+
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="Las palabras de 5 letras más comunes en español (y cómo te ayudan en Gofre) — Blog de Gofre"
+    />
+    <meta
+      property="og:description"
+      content="Conocer los patrones más frecuentes entre las palabras de 5 letras en español te da una ventaja real para resolver Gofre más rápido. Te mostramos cuáles son."
+    />
+    <meta property="og:locale" content="es_ES" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Las palabras de 5 letras más comunes en español (y cómo te ayudan en Gofre)",
+        "description": "Conocer los patrones más frecuentes entre las palabras de 5 letras en español te da una ventaja real para resolver Gofre más rápido. Te mostramos cuáles son.",
+        "datePublished": "2026-07-26",
+        "inLanguage": "es",
+        "author": { "@type": "Organization", "name": "Gofre" },
+        "publisher": { "@type": "Organization", "name": "Gofre" }
+      }
+    </script>
+
+    <style>
+      :root {
+        --bg: #1b1712;
+        --surface: #251f17;
+        --tile: #332b20;
+        --tile-border: #493d2b;
+        --ink: #f4ecdc;
+        --ink-dim: #b4a48c;
+        --ink-faint: #7a6e5b;
+        --accent: #ed8a3f;
+        --accent-ink: #241207;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(
+            circle at 20% -10%,
+            rgba(237, 138, 63, 0.08),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 100% 10%,
+            rgba(237, 138, 63, 0.05),
+            transparent 40%
+          ),
+          var(--bg);
+        color: var(--ink);
+        font-family: "Space Grotesk", sans-serif;
+        padding: 32px 18px 60px;
+      }
+      main {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      a {
+        color: var(--accent);
+      }
+      header.page-head {
+        text-align: center;
+        margin-bottom: 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .brand .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 12px rgba(237, 138, 63, 0.7);
+      }
+      .brand span.name {
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 1.6rem;
+      }
+      h1 {
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-size: 1.75rem;
+        line-height: 1.25;
+        margin: 6px 0 4px;
+      }
+      .meta {
+        color: var(--ink-faint);
+        font-size: 0.76rem;
+        margin-top: 2px;
+      }
+      nav.sitenav {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 0.8rem;
+        margin-top: 14px;
+      }
+      nav.sitenav a {
+        text-decoration: none;
+        color: var(--ink-dim);
+        border-bottom: 1px solid transparent;
+      }
+      nav.sitenav a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      article p {
+        color: var(--ink-dim);
+        line-height: 1.7;
+        font-size: 0.95rem;
+        margin: 0 0 16px;
+      }
+      article h2 {
+        font-family: "Fraunces", serif;
+        font-size: 1.25rem;
+        color: var(--ink);
+        margin: 32px 0 12px;
+      }
+      article h3 {
+        font-family: "Fraunces", serif;
+        font-size: 1.05rem;
+        color: var(--ink);
+        margin: 24px 0 10px;
+      }
+      article ul,
+      article ol {
+        color: var(--ink-dim);
+        line-height: 1.7;
+        font-size: 0.95rem;
+        padding-left: 1.2em;
+        margin: 0 0 16px;
+      }
+      article li {
+        margin-bottom: 8px;
+      }
+      strong {
+        color: var(--ink);
+      }
+      .tip-box {
+        background: var(--surface);
+        border: 1px solid var(--tile-border);
+        border-left: 3px solid var(--accent);
+        border-radius: 10px;
+        padding: 14px 18px;
+        font-size: 0.9rem;
+        color: var(--ink-dim);
+        margin: 0 0 16px;
+      }
+      .cta {
+        text-align: center;
+        margin: 34px 0 10px;
+      }
+      .cta a.play-btn {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-weight: 600;
+        text-decoration: none;
+        padding: 13px 26px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+      }
+      footer {
+        text-align: center;
+        color: var(--ink-faint);
+        font-size: 0.76rem;
+        margin-top: 30px;
+      }
+      footer a {
+        color: var(--ink-faint);
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      .cookie-consent {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 200;
+        background: var(--bg, #1b1712);
+        border-top: 1px solid var(--tile-border, #493d2b);
+        padding: 14px 18px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .cookie-consent p {
+        margin: 0;
+        color: var(--ink-dim, #b4a48c);
+        font-size: 0.82rem;
+        max-width: 480px;
+        line-height: 1.5;
+      }
+      .cookie-consent a {
+        color: var(--accent, #ed8a3f);
+      }
+      .cookie-consent-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .cookie-btn {
+        appearance: none;
+        border: none;
+        border-radius: 10px;
+        padding: 8px 16px;
+        font-family: inherit;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .cookie-btn.accept {
+        background: var(--accent, #ed8a3f);
+        color: var(--accent-ink, #241207);
+      }
+      .cookie-btn.reject {
+        background: transparent;
+        color: var(--ink-dim, #b4a48c);
+        border: 1px solid var(--tile-border, #493d2b);
+      }
+      @media (max-width: 480px) {
+        .cookie-consent {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+    <div id="cookieConsent" class="cookie-consent">
+      <p>
+        Usamos cookies propias y de terceros para medir el uso del sitio y
+        mostrar contenido relevante.
+        <a href="../privacidad.html">Más información</a>.
+      </p>
+      <div class="cookie-consent-actions">
+        <button id="cookieAccept" class="cookie-btn accept" type="button">
+          Aceptar
+        </button>
+        <button id="cookieReject" class="cookie-btn reject" type="button">
+          Rechazar
+        </button>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var CONSENT_KEY = "gofre_cookie_consent";
+        var banner = document.getElementById("cookieConsent");
+        var stored = null;
+        try {
+          stored = localStorage.getItem(CONSENT_KEY);
+        } catch (err) {}
+        if (!stored && banner) {
+          banner.style.display = "flex";
+        }
+        var acceptBtn = document.getElementById("cookieAccept");
+        var rejectBtn = document.getElementById("cookieReject");
+        if (acceptBtn)
+          acceptBtn.addEventListener("click", function () {
+            try {
+              localStorage.setItem(CONSENT_KEY, "accepted");
+            } catch (err) {}
+            if (banner) banner.style.display = "none";
+            if (window.__gofreLoadAds) window.__gofreLoadAds();
+          });
+        if (rejectBtn)
+          rejectBtn.addEventListener("click", function () {
+            try {
+              localStorage.setItem(CONSENT_KEY, "rejected");
+            } catch (err) {}
+            if (banner) banner.style.display = "none";
+          });
+      })();
+    </script>
+
+    <main>
+      <header class="page-head">
+        <div class="brand">
+          <span class="dot"></span><span class="name">Gofre</span>
+        </div>
+        <h1>
+          Las palabras de 5 letras más comunes en español (y cómo te ayudan en
+          Gofre)
+        </h1>
+        <p class="meta">26 de julio de 2026 · Blog de Gofre</p>
+        <nav class="sitenav" aria-label="Navegación del sitio">
+          <a href="../index.html">Jugar</a>
+          <a href="../como-jugar.html">Cómo se juega</a>
+          <a href="index.html">Blog</a>
+        </nav>
+      </header>
+
+      <article>
+        <p>
+          El español tiene una ventaja curiosa para este tipo de juegos: al ser
+          un idioma con muchas terminaciones regulares (verbos conjugados,
+          plurales, sufijos), las palabras de 5 letras tienden a repetir ciertos
+          patrones una y otra vez. Conocerlos de memoria acelera muchísimo cómo
+          leés el tablero de Gofre.
+        </p>
+
+        <h2>Terminaciones verbales frecuentes</h2>
+        <p>
+          Una porción enorme de las palabras de 5 letras en español son formas
+          verbales conjugadas. Algunas terminaciones que aparecen todo el
+          tiempo:
+        </p>
+        <ul>
+          <li>
+            <strong>-ARON</strong> (pretérito plural): jugaron, cantaron,
+            llegaron.
+          </li>
+          <li>
+            <strong>-ABAN</strong> (pretérito imperfecto plural): amaban,
+            hablaban, jugaban.
+          </li>
+          <li>
+            <strong>-ARÍA</strong> recortado a <strong>-ARIA</strong> en algunos
+            contextos: diaria, agraria.
+          </li>
+        </ul>
+
+        <h2>Sustantivos y adjetivos con terminaciones típicas</h2>
+        <p>
+          Fuera de los verbos, hay familias enteras de sustantivos y adjetivos
+          de 5 letras que comparten estructura:
+        </p>
+        <ul>
+          <li>
+            <strong>-ISTA</strong>: pista, lista, artista (6 letras, pero la
+            raíz ayuda igual a reconocer el patrón).
+          </li>
+          <li>
+            <strong>-OSO / -OSA</strong>: dudosa, famoso (5 letras cuando la
+            raíz es corta).
+          </li>
+          <li>
+            <strong>-CION</strong> recortado: casos como "acción" en su forma
+            sin tilde ni ñ.
+          </li>
+        </ul>
+
+        <h2>Por qué esto importa en Gofre</h2>
+        <p>
+          Cuando ves una ficha amarilla en la última posición de una palabra y
+          sospechás que podría ser una N, una S o una O, pensar en estos
+          patrones te ahorra tanteos. Por ejemplo, si las primeras cuatro letras
+          de una palabra ya están en verde y forman algo como "PLAT_", tu
+          cerebro debería ir directo a "PLATA" antes de probar al azar.
+        </p>
+
+        <div class="tip-box">
+          <strong>Tip práctico:</strong> las vocales A, E, O aparecen con mucha
+          más frecuencia que I y U en las posiciones finales de palabras de 5
+          letras en español. Si tenés una ficha amarilla al final y no sabés qué
+          letra es, esas tres vocales son la apuesta más segura.
+        </div>
+
+        <p>
+          Combinar este conocimiento de patrones con una buena lectura de las
+          pistas de color es exactamente lo que separa una partida resuelta con
+          margen de sobra de una que se va al límite de los 15 intercambios. Si
+          querés profundizar en la parte táctica, la guía de
+          <a href="../estrategias-para-ganar-en-gofre.html"
+            >estrategias para ganar en Gofre</a
+          >
+          tiene más trucos de tablero.
+        </p>
+      </article>
+
+      <div class="cta">
+        <a class="play-btn" href="../index.html"
+          >Jugar una partida de Gofre →</a
+        >
+      </div>
+
+      <footer>
+        <p>
+          <a href="index.html">← Volver al blog</a> ·
+          <a href="../index.html">Gofre</a> ·
+          <a href="../privacidad.html">Privacidad</a> ·
+          <a href="../terminos.html">Términos</a>
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
