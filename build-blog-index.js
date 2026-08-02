@@ -28,7 +28,7 @@ const path = require('path');
 // ------------------------------------------------------------------
 // CONFIGURACIÓN — cambiá esto por tu dominio real antes de publicar
 // ------------------------------------------------------------------
-const DOMAIN = 'https://tu-dominio.com';
+const DOMAIN = 'https://www.gofrejuego.com';
 const SITE_NAME = 'Gofre';
 
 const ROOT = __dirname;

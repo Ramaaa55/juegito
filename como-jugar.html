@@ -1,251 +1,424 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <script>
+      (function () {
+        var s1 = document.createElement("script");
+        s1.async = true;
+        s1.src =
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4766140355071916";
+        s1.crossOrigin = "anonymous";
+        document.head.appendChild(s1);
 
-<title>Cómo jugar a Gofre — guía completa del juego de palabras estilo Waffle</title>
-<meta name="description" content="Aprendé a jugar a Gofre paso a paso: el juego de palabras en español estilo Waffle, parecido a Wordle pero con fichas que se arrastran. Reglas, colores y objetivo explicados.">
-<meta name="keywords" content="como jugar waffle, reglas juego de palabras, waffle en español, como wordle, tutorial gofre">
-<meta name="author" content="Gofre">
-<link rel="canonical" href="https://tu-dominio.com/como-jugar.html">
+        var s2 = document.createElement("script");
+        s2.async = true;
+        s2.src = "https://www.googletagmanager.com/gtag/js?id=G-KZ7HHPBYB7";
+        document.head.appendChild(s2);
 
-<meta property="og:type" content="article">
-<meta property="og:title" content="Cómo jugar a Gofre — guía completa">
-<meta property="og:description" content="Reglas y estrategia básica del juego de palabras Gofre, estilo Waffle y Wordle, en español.">
-<meta property="og:url" content="https://tu-dominio.com/como-jugar.html">
-<meta property="og:locale" content="es_ES">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        gtag("js", new Date());
+        gtag("config", "G-KZ7HHPBYB7");
+      })();
+    </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "Cómo jugar a Gofre",
-  "description": "Guía paso a paso para jugar a Gofre, un juego de palabras en español estilo Waffle: reordená 6 palabras de 5 letras intercambiando fichas.",
-  "inLanguage": "es",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "name": "Observá el tablero",
-      "text": "El tablero tiene forma de waffle y esconde 6 palabras de 5 letras: 3 en horizontal y 3 en vertical, cruzadas entre sí. Todas las letras correctas ya están en el tablero, pero mezcladas de lugar."
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Leé las pistas de color",
-      "text": "Cada ficha tiene un color: verde si la letra ya está en su posición correcta, amarillo si la letra pertenece a esa palabra pero está en el lugar equivocado, y sin color si esa letra no pertenece a esa palabra."
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Arrastrá o tocá dos fichas para intercambiarlas",
-      "text": "Hacé clic y arrastrá una ficha hasta la posición de otra para intercambiarlas, o tocá una ficha y luego otra si preferís seleccionar en dos pasos. Las fichas verdes quedan bloqueadas y no se pueden mover."
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Administrá tus intercambios",
-      "text": "Tenés 15 intercambios para resolver el tablero completo. Cada movimiento cuenta, así que pensá antes de mover: buscá primero las fichas amarillas que sepas exactamente dónde van."
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Ganá poniendo todo el tablero en verde",
-      "text": "El objetivo es que las 21 fichas del tablero queden en verde antes de quedarte sin intercambios. Cuantos menos uses, mejor tu resultado."
-    }
-  ]
-}
-</script>
+    <title>
+      Cómo jugar a Gofre — guía completa del juego de palabras estilo Waffle
+    </title>
+    <meta
+      name="description"
+      content="Aprendé a jugar a Gofre paso a paso: el juego de palabras en español estilo Waffle, parecido a Wordle pero con fichas que se arrastran. Reglas, colores y objetivo explicados."
+    />
+    <meta
+      name="keywords"
+      content="como jugar waffle, reglas juego de palabras, waffle en español, como wordle, tutorial gofre"
+    />
+    <meta name="author" content="Gofre" />
+    <link rel="canonical" href="https://www.gofrejuego.com/como-jugar.html" />
 
-<style>
-  :root{
-    --bg: #1B1712;
-    --surface: #251F17;
-    --tile: #332B20;
-    --tile-border: #493D2B;
-    --ink: #F4ECDC;
-    --ink-dim: #B4A48C;
-    --ink-faint: #7A6E5B;
-    --accent: #ED8A3F;
-    --accent-ink: #241207;
-    --green: #4F8F5B;
-    --green-ink: #EAF3EA;
-    --yellow: #D3A73B;
-    --yellow-ink: #2B2004;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    min-height:100vh;
-    background:
-      radial-gradient(circle at 20% -10%, rgba(237,138,63,.08), transparent 45%),
-      radial-gradient(circle at 100% 10%, rgba(237,138,63,.05), transparent 40%),
-      var(--bg);
-    color:var(--ink);
-    font-family:'Space Grotesk', sans-serif;
-    padding:32px 18px 60px;
-  }
-  main{
-    max-width:640px;
-    margin:0 auto;
-  }
-  a{ color:var(--accent); }
-  header.page-head{
-    text-align:center;
-    margin-bottom:28px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:6px;
-  }
-  .brand{ display:flex; align-items:baseline; gap:10px; }
-  .brand .dot{
-    width:9px;height:9px;border-radius:50%;
-    background:var(--accent);
-    box-shadow:0 0 12px rgba(237,138,63,.7);
-  }
-  .brand span.name{
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    font-style:italic;
-    font-size:1.6rem;
-  }
-  h1{
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    font-size:1.9rem;
-    line-height:1.2;
-    margin:6px 0 4px;
-  }
-  .subtitle{ color:var(--ink-faint); font-size:.9rem; }
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Cómo jugar a Gofre — guía completa" />
+    <meta
+      property="og:description"
+      content="Reglas y estrategia básica del juego de palabras Gofre, estilo Waffle y Wordle, en español."
+    />
+    <meta
+      property="og:url"
+      content="https://www.gofrejuego.com/como-jugar.html"
+    />
+    <meta property="og:locale" content="es_ES" />
 
-  nav.sitenav{
-    display:flex;
-    gap:16px;
-    justify-content:center;
-    flex-wrap:wrap;
-    font-size:.8rem;
-    margin-top:14px;
-  }
-  nav.sitenav a{ text-decoration:none; color:var(--ink-dim); border-bottom:1px solid transparent; }
-  nav.sitenav a:hover{ color:var(--accent); border-color:var(--accent); }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  section{
-    background:var(--surface);
-    border:1px solid var(--tile-border);
-    border-radius:16px;
-    padding:22px 24px;
-    margin-bottom:18px;
-  }
-  section h2{
-    font-family:'Fraunces', serif;
-    font-size:1.2rem;
-    margin:0 0 10px;
-  }
-  section p{
-    color:var(--ink-dim);
-    line-height:1.65;
-    font-size:.94rem;
-    margin:0 0 12px;
-  }
-  section p:last-child{ margin-bottom:0; }
-  section ol, section ul{
-    color:var(--ink-dim);
-    line-height:1.7;
-    font-size:.94rem;
-    padding-left:1.2em;
-    margin:0;
-  }
-  section li{ margin-bottom:8px; }
-  section li:last-child{ margin-bottom:0; }
-  strong{ color:var(--ink); }
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Cómo jugar a Gofre",
+        "description": "Guía paso a paso para jugar a Gofre, un juego de palabras en español estilo Waffle: reordená 6 palabras de 5 letras intercambiando fichas.",
+        "inLanguage": "es",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Observá el tablero",
+            "text": "El tablero tiene forma de waffle y esconde 6 palabras de 5 letras: 3 en horizontal y 3 en vertical, cruzadas entre sí. Todas las letras correctas ya están en el tablero, pero mezcladas de lugar."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Leé las pistas de color",
+            "text": "Cada ficha tiene un color: verde si la letra ya está en su posición correcta, amarillo si la letra pertenece a esa palabra pero está en el lugar equivocado, y sin color si esa letra no pertenece a esa palabra."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Arrastrá o tocá dos fichas para intercambiarlas",
+            "text": "Hacé clic y arrastrá una ficha hasta la posición de otra para intercambiarlas, o tocá una ficha y luego otra si preferís seleccionar en dos pasos. Las fichas verdes quedan bloqueadas y no se pueden mover."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Administrá tus intercambios",
+            "text": "Tenés 15 intercambios para resolver el tablero completo. Cada movimiento cuenta, así que pensá antes de mover: buscá primero las fichas amarillas que sepas exactamente dónde van."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Ganá poniendo todo el tablero en verde",
+            "text": "El objetivo es que las 21 fichas del tablero queden en verde antes de quedarte sin intercambios. Cuantos menos uses, mejor tu resultado."
+          }
+        ]
+      }
+    </script>
 
-  .legend{ display:flex; flex-direction:column; gap:12px; margin-top:6px; }
-  .legend .row{ display:flex; align-items:flex-start; gap:10px; font-size:.92rem; color:var(--ink-dim); }
-  .swatch{ width:16px; height:16px; border-radius:4px; flex-shrink:0; margin-top:3px; }
-  .swatch.green{ background:var(--green); }
-  .swatch.yellow{ background:var(--yellow); }
-  .swatch.gray{ background:var(--tile); border:1px solid var(--tile-border); }
+    <style>
+      :root {
+        --bg: #1b1712;
+        --surface: #251f17;
+        --tile: #332b20;
+        --tile-border: #493d2b;
+        --ink: #f4ecdc;
+        --ink-dim: #b4a48c;
+        --ink-faint: #7a6e5b;
+        --accent: #ed8a3f;
+        --accent-ink: #241207;
+        --green: #4f8f5b;
+        --green-ink: #eaf3ea;
+        --yellow: #d3a73b;
+        --yellow-ink: #2b2004;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(
+            circle at 20% -10%,
+            rgba(237, 138, 63, 0.08),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 100% 10%,
+            rgba(237, 138, 63, 0.05),
+            transparent 40%
+          ),
+          var(--bg);
+        color: var(--ink);
+        font-family: "Space Grotesk", sans-serif;
+        padding: 32px 18px 60px;
+      }
+      main {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      a {
+        color: var(--accent);
+      }
+      header.page-head {
+        text-align: center;
+        margin-bottom: 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .brand .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 12px rgba(237, 138, 63, 0.7);
+      }
+      .brand span.name {
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 1.6rem;
+      }
+      h1 {
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-size: 1.9rem;
+        line-height: 1.2;
+        margin: 6px 0 4px;
+      }
+      .subtitle {
+        color: var(--ink-faint);
+        font-size: 0.9rem;
+      }
 
-  .cta{
-    text-align:center;
-    margin:30px 0 10px;
-  }
-  .cta a.play-btn{
-    display:inline-block;
-    background:var(--accent);
-    color:var(--accent-ink);
-    font-weight:600;
-    text-decoration:none;
-    padding:13px 26px;
-    border-radius:12px;
-    font-size:.95rem;
-  }
+      nav.sitenav {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 0.8rem;
+        margin-top: 14px;
+      }
+      nav.sitenav a {
+        text-decoration: none;
+        color: var(--ink-dim);
+        border-bottom: 1px solid transparent;
+      }
+      nav.sitenav a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
 
-  footer{
-    text-align:center;
-    color:var(--ink-faint);
-    font-size:.76rem;
-    margin-top:30px;
-  }
-  footer a{ color:var(--ink-faint); }
-</style>
-</head>
-<body>
-<main>
+      section {
+        background: var(--surface);
+        border: 1px solid var(--tile-border);
+        border-radius: 16px;
+        padding: 22px 24px;
+        margin-bottom: 18px;
+      }
+      section h2 {
+        font-family: "Fraunces", serif;
+        font-size: 1.2rem;
+        margin: 0 0 10px;
+      }
+      section p {
+        color: var(--ink-dim);
+        line-height: 1.65;
+        font-size: 0.94rem;
+        margin: 0 0 12px;
+      }
+      section p:last-child {
+        margin-bottom: 0;
+      }
+      section ol,
+      section ul {
+        color: var(--ink-dim);
+        line-height: 1.7;
+        font-size: 0.94rem;
+        padding-left: 1.2em;
+        margin: 0;
+      }
+      section li {
+        margin-bottom: 8px;
+      }
+      section li:last-child {
+        margin-bottom: 0;
+      }
+      strong {
+        color: var(--ink);
+      }
 
-  <header class="page-head">
-    <div class="brand"><span class="dot"></span><span class="name">Gofre</span></div>
-    <h1>Cómo jugar a Gofre</h1>
-    <p class="subtitle">La guía completa del juego de palabras en español estilo Waffle</p>
-    <nav class="sitenav" aria-label="Navegación del sitio">
-      <a href="index.html">Jugar</a>
-      <a href="estrategias-para-ganar-en-gofre.html">Estrategias para ganar</a>
-    </nav>
-  </header>
+      .legend {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 6px;
+      }
+      .legend .row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.92rem;
+        color: var(--ink-dim);
+      }
+      .swatch {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+      .swatch.green {
+        background: var(--green);
+      }
+      .swatch.yellow {
+        background: var(--yellow);
+      }
+      .swatch.gray {
+        background: var(--tile);
+        border: 1px solid var(--tile-border);
+      }
 
-  <section>
-    <h2>¿Qué es Gofre?</h2>
-    <p>Gofre es un juego de palabras diario en español inspirado en <strong>Waffle</strong> y emparentado con <strong>Wordle</strong>: en vez de escribir intentos, tenés un tablero con forma de waffle donde ya están todas las letras correctas, pero desordenadas. Tu trabajo es reacomodarlas intercambiando fichas de a dos, con un número limitado de movimientos.</p>
-    <p>Cada partida esconde <strong>6 palabras de 5 letras</strong>: tres se leen en horizontal y tres en vertical, y se cruzan entre sí como en una mini grilla de crucigrama.</p>
-  </section>
+      .cta {
+        text-align: center;
+        margin: 30px 0 10px;
+      }
+      .cta a.play-btn {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-weight: 600;
+        text-decoration: none;
+        padding: 13px 26px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+      }
 
-  <section>
-    <h2>El objetivo</h2>
-    <p>Ganás cuando las <strong>21 fichas</strong> del tablero quedan en su posición correcta (todas en verde) antes de quedarte sin intercambios disponibles. Empezás cada partida con <strong>15 intercambios</strong>.</p>
-  </section>
+      footer {
+        text-align: center;
+        color: var(--ink-faint);
+        font-size: 0.76rem;
+        margin-top: 30px;
+      }
+      footer a {
+        color: var(--ink-faint);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="page-head">
+        <div class="brand">
+          <span class="dot"></span><span class="name">Gofre</span>
+        </div>
+        <h1>Cómo jugar a Gofre</h1>
+        <p class="subtitle">
+          La guía completa del juego de palabras en español estilo Waffle
+        </p>
+        <nav class="sitenav" aria-label="Navegación del sitio">
+          <a href="index.html">Jugar</a>
+          <a href="estrategias-para-ganar-en-gofre.html"
+            >Estrategias para ganar</a
+          >
+          <a href="blog/index.html">Blog</a>
+        </nav>
+      </header>
 
-  <section>
-    <h2>Cómo mover las fichas</h2>
-    <ol>
-      <li><strong>Arrastrando:</strong> hacé clic (o tocá en el celular) sobre una ficha y arrastrala hasta la posición de otra. Al soltarla, ambas letras cambian de lugar.</li>
-      <li><strong>Tocando de a una:</strong> si preferís no arrastrar, tocá una ficha para seleccionarla y después tocá la ficha con la que querés intercambiarla.</li>
-      <li>Las fichas <strong>verdes quedan bloqueadas</strong>: ya están en el lugar correcto, así que no hace falta (ni se puede) moverlas.</li>
-    </ol>
-  </section>
+      <section>
+        <h2>¿Qué es Gofre?</h2>
+        <p>
+          Gofre es un juego de palabras diario en español inspirado en
+          <strong>Waffle</strong> y emparentado con <strong>Wordle</strong>: en
+          vez de escribir intentos, tenés un tablero con forma de waffle donde
+          ya están todas las letras correctas, pero desordenadas. Tu trabajo es
+          reacomodarlas intercambiando fichas de a dos, con un número limitado
+          de movimientos.
+        </p>
+        <p>
+          Cada partida esconde <strong>6 palabras de 5 letras</strong>: tres se
+          leen en horizontal y tres en vertical, y se cruzan entre sí como en
+          una mini grilla de crucigrama.
+        </p>
+      </section>
 
-  <section>
-    <h2>Qué significa cada color</h2>
-    <p>El sistema de colores es el mismo que el de Wordle, aplicado a cada una de las 6 palabras del tablero:</p>
-    <div class="legend">
-      <div class="row"><span class="swatch green"></span><span><strong>Verde:</strong> la letra está en la posición correcta de esa palabra.</span></div>
-      <div class="row"><span class="swatch yellow"></span><span><strong>Amarillo:</strong> la letra pertenece a esa palabra, pero todavía está en el lugar equivocado.</span></div>
-      <div class="row"><span class="swatch gray"></span><span><strong>Sin color:</strong> esa letra no forma parte de esa palabra en particular (aunque puede pertenecer a otra que cruza por la misma ficha).</span></div>
-    </div>
-  </section>
+      <section>
+        <h2>El objetivo</h2>
+        <p>
+          Ganás cuando las <strong>21 fichas</strong> del tablero quedan en su
+          posición correcta (todas en verde) antes de quedarte sin intercambios
+          disponibles. Empezás cada partida con
+          <strong>15 intercambios</strong>.
+        </p>
+      </section>
 
-  <section>
-    <h2>Un consejo para empezar</h2>
-    <p>Fijate primero en las fichas de las esquinas y de los cruces: cada una de ellas pertenece a dos palabras a la vez (una horizontal y una vertical), así que resolverlas bien te da información sobre dos palabras con un solo movimiento. Si querés profundizar más, tenemos una guía completa de <a href="estrategias-para-ganar-en-gofre.html">estrategias para ganar en Gofre</a> con trucos para resolver el tablero usando menos intercambios.</p>
-  </section>
+      <section>
+        <h2>Cómo mover las fichas</h2>
+        <ol>
+          <li>
+            <strong>Arrastrando:</strong> hacé clic (o tocá en el celular) sobre
+            una ficha y arrastrala hasta la posición de otra. Al soltarla, ambas
+            letras cambian de lugar.
+          </li>
+          <li>
+            <strong>Tocando de a una:</strong> si preferís no arrastrar, tocá
+            una ficha para seleccionarla y después tocá la ficha con la que
+            querés intercambiarla.
+          </li>
+          <li>
+            Las fichas <strong>verdes quedan bloqueadas</strong>: ya están en el
+            lugar correcto, así que no hace falta (ni se puede) moverlas.
+          </li>
+        </ol>
+      </section>
 
-  <div class="cta">
-    <a class="play-btn" href="index.html">Jugar una partida →</a>
-  </div>
+      <section>
+        <h2>Qué significa cada color</h2>
+        <p>
+          El sistema de colores es el mismo que el de Wordle, aplicado a cada
+          una de las 6 palabras del tablero:
+        </p>
+        <div class="legend">
+          <div class="row">
+            <span class="swatch green"></span
+            ><span
+              ><strong>Verde:</strong> la letra está en la posición correcta de
+              esa palabra.</span
+            >
+          </div>
+          <div class="row">
+            <span class="swatch yellow"></span
+            ><span
+              ><strong>Amarillo:</strong> la letra pertenece a esa palabra, pero
+              todavía está en el lugar equivocado.</span
+            >
+          </div>
+          <div class="row">
+            <span class="swatch gray"></span
+            ><span
+              ><strong>Sin color:</strong> esa letra no forma parte de esa
+              palabra en particular (aunque puede pertenecer a otra que cruza
+              por la misma ficha).</span
+            >
+          </div>
+        </div>
+      </section>
 
-  <footer>
-    <p><a href="index.html">Gofre</a> — juego de palabras gratuito en español · <a href="estrategias-para-ganar-en-gofre.html">Estrategias</a></p>
-  </footer>
+      <section>
+        <h2>Un consejo para empezar</h2>
+        <p>
+          Fijate primero en las fichas de las esquinas y de los cruces: cada una
+          de ellas pertenece a dos palabras a la vez (una horizontal y una
+          vertical), así que resolverlas bien te da información sobre dos
+          palabras con un solo movimiento. Si querés profundizar más, tenemos
+          una guía completa de
+          <a href="estrategias-para-ganar-en-gofre.html"
+            >estrategias para ganar en Gofre</a
+          >
+          con trucos para resolver el tablero usando menos intercambios.
+        </p>
+      </section>
 
-</main>
-</body>
+      <div class="cta">
+        <a class="play-btn" href="index.html">Jugar una partida →</a>
+      </div>
+
+      <footer>
+        <p>
+          <a href="index.html">Gofre</a> — juego de palabras gratuito en español
+          · <a href="estrategias-para-ganar-en-gofre.html">Estrategias</a> ·
+          <a href="privacidad.html">Privacidad</a> ·
+          <a href="terminos.html">Términos</a>
+        </p>
+      </footer>
+    </main>
+  </body>
 </html>
