@@ -2,12 +2,13 @@
 /**
  * build-blog-index.js
  * ---------------------------------------------------------
- * Pensado para tu flujo: vos creás los artículos como archivos
- * .html directamente dentro de la carpeta /blog/ (por ejemplo con
- * la ayuda de Claude en VS Code), y este script:
+ * Pensado para tu flujo: vos creás cada artículo como una carpeta
+ * dentro de /blog/ con un index.html adentro (así la URL queda
+ * limpia, sin ".html" — ej: blog/mi-articulo/index.html se ve
+ * como tudominio.com/blog/mi-articulo/). Este script:
  *
- *   1. Escanea todos los .html que haya dentro de /blog/
- *      (excepto blog/index.html, que es el que este script genera).
+ *   1. Escanea todas las carpetas dentro de /blog/ que tengan
+ *      un index.html (el nombre de la carpeta es la URL del artículo).
  *   2. Lee el <title>, la <meta name="description"> y la
  *      <meta name="date" content="AAAA-MM-DD"> de cada artículo.
  *   3. Genera /blog/index.html con la lista de todos los artículos,
@@ -38,10 +39,10 @@ const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
 
 const STATIC_PAGES = [
   { loc: `${DOMAIN}/`, changefreq: 'daily', priority: '1.0' },
-  { loc: `${DOMAIN}/como-jugar.html`, changefreq: 'monthly', priority: '0.8' },
-  { loc: `${DOMAIN}/estrategias-para-ganar-en-gofre.html`, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${DOMAIN}/como-jugar/`, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${DOMAIN}/estrategias-para-ganar-en-gofre/`, changefreq: 'monthly', priority: '0.8' },
   { loc: `${DOMAIN}/blog/`, changefreq: 'daily', priority: '0.9' },
-  // privacidad.html y terminos.html llevan <meta name="robots" content="noindex">
+  // privacidad/ y terminos/ llevan <meta name="robots" content="noindex">
   // a propósito, así que no se listan acá (son navegables pero no se indexan).
 ];
 
@@ -93,17 +94,17 @@ function extractTag(html, regex, fallback){
   return m ? m[1].trim() : fallback;
 }
 
-function humanizeFilename(filename){
-  const name = filename.replace(/\.html?$/i, '').replace(/[-_]+/g, ' ').trim();
+function humanizeSlug(slug){
+  const name = slug.replace(/[-_]+/g, ' ').trim();
   return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
-// Lee un artículo .html y saca sus metadatos para la tarjeta del blog.
-function readArticle(filename){
-  const filePath = path.join(BLOG_DIR, filename);
+// Lee blog/{slug}/index.html y saca sus metadatos para la tarjeta del blog.
+function readArticle(slug){
+  const filePath = path.join(BLOG_DIR, slug, 'index.html');
   const html = fs.readFileSync(filePath, 'utf8');
 
-  const title = extractTag(html, /<title>([\s\S]*?)<\/title>/i, humanizeFilename(filename));
+  const title = extractTag(html, /<title>([\s\S]*?)<\/title>/i, humanizeSlug(slug));
   const cleanTitle = title.replace(new RegExp(`\\s*[—-]\\s*Blog de ${SITE_NAME}\\s*$`, 'i'), '').trim();
   const description = extractTag(
     html,
@@ -122,7 +123,7 @@ function readArticle(filename){
     dateSource = 'archivo (sin <meta name="date">)';
   }
 
-  return { filename, title: cleanTitle, description, date, dateSource };
+  return { slug, title: cleanTitle, description, date, dateSource };
 }
 
 // ------------------------------------------------------------------
@@ -184,7 +185,7 @@ function renderBlogIndex(articles){
 
   const listHtml = sorted.length
     ? `<div class="post-list">${sorted.map(a=>`
-      <a class="post-card" href="${a.filename}">
+      <a class="post-card" href="${a.slug}/">
         <div class="post-date">${humanDate(a.date)}</div>
         <h2>${a.title}</h2>
         <p>${a.description}</p>
@@ -223,15 +224,15 @@ ${JSON.stringify(jsonLd, null, 2)}
     <h1>Blog de ${SITE_NAME}</h1>
     <p class="subtitle">Estrategias, vocabulario y novedades sobre el juego</p>
     <nav class="sitenav" aria-label="Navegación del sitio">
-      <a href="../index.html">Jugar</a>
-      <a href="../como-jugar.html">Cómo se juega</a>
+      <a href="../">Jugar</a>
+      <a href="../como-jugar/">Cómo se juega</a>
     </nav>
   </header>
 
   ${listHtml}
 
   <footer>
-    <p><a href="../index.html">${SITE_NAME}</a> — juego de palabras gratuito en español · <a href="../privacidad.html">Privacidad</a> · <a href="../terminos.html">Términos</a></p>
+    <p><a href="../">${SITE_NAME}</a> — juego de palabras gratuito en español · <a href="../privacidad/">Privacidad</a> · <a href="../terminos/">Términos</a></p>
   </footer>
 </main>
 </body>
@@ -241,7 +242,7 @@ ${JSON.stringify(jsonLd, null, 2)}
 
 function renderSitemap(articles){
   const articleEntries = articles.map(a=>({
-    loc: `${DOMAIN}/blog/${a.filename}`,
+    loc: `${DOMAIN}/blog/${a.slug}/`,
     changefreq: 'monthly',
     priority: '0.6',
     lastmod: a.date
@@ -273,23 +274,24 @@ ${body}
 function main(){
   if(!fs.existsSync(BLOG_DIR)){
     fs.mkdirSync(BLOG_DIR, { recursive: true });
-    console.log('Creé la carpeta blog/ — poné ahí tus artículos .html y volvé a correr el script.');
+    console.log('Creé la carpeta blog/ — poné ahí tus artículos (una carpeta por artículo, con un index.html adentro) y volvé a correr el script.');
     return;
   }
 
-  const files = fs.readdirSync(BLOG_DIR).filter(f=>{
-    return f.toLowerCase().endsWith('.html') && f.toLowerCase() !== 'index.html';
-  });
+  const slugs = fs.readdirSync(BLOG_DIR, { withFileTypes: true })
+    .filter(entry => entry.isDirectory())
+    .map(entry => entry.name)
+    .filter(name => fs.existsSync(path.join(BLOG_DIR, name, 'index.html')));
 
-  if(!files.length){
-    console.log('No encontré artículos en blog/ (solo se cuentan archivos .html, sin contar index.html).');
+  if(!slugs.length){
+    console.log('No encontré artículos en blog/ (busco carpetas que tengan un index.html adentro).');
   }
 
-  const articles = files.map(readArticle);
+  const articles = slugs.map(readArticle);
 
   articles.forEach(a=>{
     if(a.dateSource !== 'meta'){
-      console.log(`ℹ️  "${a.filename}" no tiene <meta name="date" content="AAAA-MM-DD">, usé la fecha del archivo (${a.date}). Agregá esa etiqueta para controlar el orden vos mismo.`);
+      console.log(`ℹ️  "${a.slug}/" no tiene <meta name="date" content="AAAA-MM-DD">, usé la fecha del archivo (${a.date}). Agregá esa etiqueta para controlar el orden vos mismo.`);
     }
   });
 
@@ -297,12 +299,12 @@ function main(){
   console.log(`✓ blog/index.html actualizado con ${articles.length} artículo(s):`);
   articles
     .sort((a,b)=> b.date.localeCompare(a.date))
-    .forEach(a=> console.log(`   - [${a.date}] ${a.title}  (blog/${a.filename})`));
+    .forEach(a=> console.log(`   - [${a.date}] ${a.title}  (blog/${a.slug}/)`));
 
   fs.writeFileSync(SITEMAP_PATH, renderSitemap(articles), 'utf8');
   console.log('✓ sitemap.xml actualizado');
 
-  console.log('\nListo. Subí blog/index.html, sitemap.xml y los artículos nuevos/editados a tu hosting.');
+  console.log('\nListo. Subí blog/index.html, sitemap.xml y las carpetas de artículos nuevas/editadas a tu hosting.');
 }
 
 main();
