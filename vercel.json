@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/como-jugar.html", "destination": "/como-jugar/", "permanent": true },
+    { "source": "/estrategias-para-ganar-en-gofre.html", "destination": "/estrategias-para-ganar-en-gofre/", "permanent": true },
+    { "source": "/privacidad.html", "destination": "/privacidad/", "permanent": true },
+    { "source": "/terminos.html", "destination": "/terminos/", "permanent": true },
+    { "source": "/blog/5-habitos-para-ampliar-tu-vocabulario.html", "destination": "/blog/5-habitos-para-ampliar-tu-vocabulario/", "permanent": true },
+    { "source": "/blog/como-armar-una-racha-jugando-gofre.html", "destination": "/blog/como-armar-una-racha-jugando-gofre/", "permanent": true },
+    { "source": "/blog/como-jugar-gofre-desde-el-celular.html", "destination": "/blog/como-jugar-gofre-desde-el-celular/", "permanent": true },
+    { "source": "/blog/errores-comunes-al-jugar-gofre.html", "destination": "/blog/errores-comunes-al-jugar-gofre/", "permanent": true },
+    { "source": "/blog/gofre-wordle-y-waffle-diferencias.html", "destination": "/blog/gofre-wordle-y-waffle-diferencias/", "permanent": true },
+    { "source": "/blog/historia-de-los-juegos-de-palabras.html", "destination": "/blog/historia-de-los-juegos-de-palabras/", "permanent": true },
+    { "source": "/blog/palabras-con-letras-repetidas-en-gofre.html", "destination": "/blog/palabras-con-letras-repetidas-en-gofre/", "permanent": true },
+    { "source": "/blog/palabras-de-5-letras-mas-comunes-en-espanol.html", "destination": "/blog/palabras-de-5-letras-mas-comunes-en-espanol/", "permanent": true },
+    { "source": "/blog/tecnicas-de-memoria-para-vocabulario-en-espanol.html", "destination": "/blog/tecnicas-de-memoria-para-vocabulario-en-espanol/", "permanent": true },
+    { "source": "/blog/index.html", "destination": "/blog/", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true }
+  ]
+}
